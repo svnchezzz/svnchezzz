@@ -1,88 +1,82 @@
-<h1 align="center">¡Hola! Soy Nicolás Mosquera Sánchez 👋</h1>
-<h3 align="center">Técnico en Procesamiento de Datos para Modelos de IA</h3>
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a1a1a,50:8B0000,100:1a1a1a&height=200&section=header&text=svnchezzz&fontColor=E8B923&fontSize=72&animation=fadeIn&fontAlignY=38&desc=Data%20-%20Automation%20-%20AI&descAlignY=60&descColor=E6E6E6&descSize=16" width="100%" />
+</div>
 
-<p align="center">
-  📍 Pereira, Risaralda — Colombia &nbsp;·&nbsp; 🌐 Disponibilidad remota
+<!--tagline-->
+<div align="center">
+  <a href="https://alvaroamosquerae.com">
+    <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&pause=1000&color=B22222&center=true&vCenter=true&width=600&lines=Data+Processing+Technician+for+AI;ETL+%7C+Machine+Learning+%7C+Automation;Order+from+data+chaos" alt="Typing SVG" />
+  </a>
+</div>
+
+<h2 align="left">序 &nbsp;·&nbsp; About Me</h2>
+
+<h4 align="left">
+Hi, I'm <b>Nicolás Mosquera Sánchez</b> — a technician trained in the full <b>data lifecycle</b> for Artificial Intelligence. My craft: data extraction, cleaning (ETL), and systematization for Machine Learning models — wielding applied statistics and Python to bring order and efficiency to business processes.
+<br><br>
+🔴 &nbsp;I currently collaborate with <a href="https://alvaroamosquerae.com">alvaroamosquerae.com</a>, an end-to-end digital solution for transforming service-based businesses.
+<br><br>
+⚔️ &nbsp;Driven by everything that unites <b>data + automation</b>: record-keeping systems, virtual agents, and workflows that run without a hand on the blade.
+<br><br>
+ 📫 &nbsp;<a href="mailto:nicolasanchezms@gmail.com">nicolasanchezms@gmail.com</a>
+</h4>
+
+<p>­­­­
 </p>
 
----
+<h2 align="left">巻物 &nbsp;·&nbsp; Works & Experience</h2>
 
-### 🧠 Sobre mí
+<h4 align="left">
+📊 &nbsp;<b>Full automation for a barbershop</b> bound by legacy methods: replacing an analog, ambiguous workflow with a structured data architecture that guards information integrity and operational efficiency.
+<br><br>
+🤖 &nbsp;<b>Virtual agents & automation</b>: automated workflows with n8n and scripts that cut repetitive tasks and sharpen operations.
+<br><br>
+🎨 &nbsp;<b>Web development</b>: websites crafted with modern design and prototyping tools.
+</h4>
 
-Técnico con formación integral en el **ciclo de vida del dato** para Inteligencia Artificial. Me especializo en la **extracción, limpieza (ETL) y sistematización** de datos orientados a modelos de Machine Learning, con base en estadística aplicada y programación en Python para optimizar procesos empresariales.
-
-- 🔭 Actualmente construyo **[alvaroamosquerae.com](https://alvaroamosquerae.com)** — una solución digital integral para la transformación de negocios de servicios.
-- 🌱 Formándome como **Técnico en Procesamiento de Datos para Modelos de IA** en el **SENA** (2025 – Presente).
-- ⚙️ Me interesa todo lo que conecte **datos + automatización**: sistemas de registro, agentes virtuales y flujos sin intervención manual.
-- 💬 Disponibilidad **inmediata** para Etapa Productiva / Contrato de Aprendizaje.
-- 📫 Escríbeme: **nicolasanchezms@gmail.com**
-
----
-
-### 🚀 Proyectos y experiencia
-
-- **📊 Sistema de control de registro de entradas y salidas** — Reemplacé un proceso análogo y ambiguo por una **arquitectura de datos estructurada** que garantiza la integridad de la información y la eficiencia operativa.
-- **🌐 alvaroamosquerae.com** — Solución digital donde los datos de servicios, clientes y comportamientos financieros fluyen de forma sincronizada, eliminando la pérdida de información.
-- **🤖 Agentes virtuales y automatizaciones** — Flujos automatizados con **n8n** y scripts que reducen tareas repetitivas y aceleran la operación.
-- **🎨 Desarrollo web** — Páginas construidas con herramientas modernas de diseño y prototipado (**Figma**, **v0.dev**).
-
----
-
-### 🛠️ Tecnologías
-
-**Lenguajes y análisis de datos**
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
-![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
-
-**Automatización, diseño y herramientas**
-
-![n8n](https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white)
-![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
-![v0.dev](https://img.shields.io/badge/v0.dev-000000?style=for-the-badge&logo=vercel&logoColor=white)
-![Google Apps Script](https://img.shields.io/badge/Google%20Apps%20Script-4285F4?style=for-the-badge&logo=google&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-
-**Áreas de trabajo:** ETL · Web Scraping · Calidad de Datos · EDA · Machine Learning (supervisado / no supervisado) · Big Data
-
----
-
-### 📈 Estadísticas de GitHub
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=TU_USUARIO&show_icons=true&locale=es&theme=tokyonight" alt="Estadísticas" height="165" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=TU_USUARIO&layout=compact&locale=es&theme=tokyonight" alt="Lenguajes más usados" height="165" />
+<p>­­­­
 </p>
 
-<p align="center">
-  <img src="https://streak-stats.demolab.com/?user=TU_USUARIO&locale=es&theme=tokyonight" alt="Racha de contribuciones" />
+<!-- ══════════════════ STACK / ARSENAL ══════════════════ -->
+<h2 align="left">武器 &nbsp;·&nbsp; Arsenal</h2>
+
+<div align="center">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="42" alt="python" />
+  <img width="14" />
+  <img src="https://cdn.simpleicons.org/pandas/150458" height="42" alt="pandas" />
+  <img width="14" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" height="42" alt="numpy" />
+  <img width="14" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" height="42" alt="mysql" />
+  <img width="14" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/anaconda/anaconda-original.svg" height="42" alt="anaconda" />
+  <img width="14" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" height="42" alt="jupyter" />
+  <img width="14" />
+  <img src="https://cdn.simpleicons.org/n8n/EA4B71" height="42" alt="n8n" />
+  <img width="14" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" height="42" alt="figma" />
+  <img width="14" />
+  <img src="https://skillicons.dev/icons?i=bots" height="42" alt="virtual agents" />
+</div>
+
+<p>­­­­
 </p>
 
----
+<!-- ══════════════════ SPOTIFY / NOW PLAYING ══════════════════ -->
+<h2 align="left">音 &nbsp;·&nbsp; Now Playing</h2>
 
-### 🌐 Contacto
+<div align="center">
+  <a href="https://open.spotify.com/user/31ylnrafjhrswb2fz4j6gpb6qewe">
+    <img src="https://spotify-recently-played-readme.vercel.app/api?user=31ylnrafjhrswb2fz4j6gpb6qewe&count=5" alt="Spotify recently played" />
+  </a>
+</div>
 
-- 📧 **nicolasanchezms@gmail.com**
-- 📱 +57 320 6149556
-- 🌍 [alvaroamosquerae.com](https://alvaroamosquerae.com)
-<!-- - 💼 LinkedIn: https://linkedin.com/in/TU_USUARIO -->
+<br>
 
----
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<div align="center">
+  <i>「乱中有机」 — In the midst of chaos, there is also opportunity.</i>
+</div>
 
-<p align="center"><i>“El dato correcto, en el lugar correcto, transforma un negocio.”</i></p><!--
-**svnchezzz/svnchezzz** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a1a1a,50:8B0000,100:1a1a1a&height=120&section=footer" width="100%" />
