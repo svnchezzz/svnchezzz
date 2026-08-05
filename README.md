@@ -14,9 +14,9 @@
 <h4 align="left">
 Hi, I'm <b>Nicolás Mosquera Sánchez</b>. A technician trained in the full <b>data lifecycle</b> for Artificial Intelligence. My craft: data extraction, cleaning (ETL), and systematization for Machine Learning models wielding applied statistics and Python to bring order and efficiency to business processes.
 <br><br>
-🔴 &nbsp;I currently collaborate with <a href="https://alvaroamosquerae.com">alvaroamosquerae.com</a>, an end-to-end digital solution for transforming service-based businesses.
+&nbsp;I currently collaborate with <a href="https://alvaroamosquerae.com">alvaroamosquerae.com</a>, an end-to-end digital solution for transforming service-based businesses.
 <br><br>
-⚔️ &nbsp;Driven by everything that unites <b>data + automation</b>: record-keeping systems, virtual agents, and workflows that run without a hand on the blade.
+&nbsp;Driven by everything that unites <b>data + automation</b>: record-keeping systems, virtual agents, and workflows that run without a hand on the blade.
 <br><br>
  📫 &nbsp;<a href="mailto:nicolasanchezms@gmail.com">nicolasanchezms@gmail.com</a>
 </h4>
