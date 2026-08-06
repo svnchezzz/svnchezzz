@@ -11,9 +11,9 @@
       <feComposite in="SourceGraphic" in2="t" operator="over"/>
     </filter>
     <pattern id="d_wave" x="0" y="0" width="56" height="46" patternUnits="userSpaceOnUse">
-      <rect width="56" height="46" fill="#1b1b1b"/>
-      <path d="M-4,40 C 8,16 20,16 28,32 C 36,48 48,44 60,26" fill="none" stroke="#5c5c5c" stroke-width="2.6"/>
-      <path d="M-4,30 C 8,8 20,8 28,22 C 36,38 48,34 60,16" fill="none" stroke="#333333" stroke-width="2.2"/>
+      <rect width="56" height="46" fill="#181b20"/>
+      <path d="M-4,40 C 8,16 20,16 28,32 C 36,48 48,44 60,26" fill="none" stroke="#546274" stroke-width="2.6"/>
+      <path d="M-4,30 C 8,8 20,8 28,22 C 36,38 48,34 60,16" fill="none" stroke="#2f3742" stroke-width="2.2"/>
     </pattern>
   </defs>
   <rect width="1000" height="46" fill="url(#d_wave)" filter="url(#d_wood)"/>
