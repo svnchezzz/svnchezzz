@@ -1,4 +1,4 @@
-<svg viewBox="0 0 1000 180" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1000 224" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <filter id="f_ink">
       <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="n"/>
@@ -69,6 +69,8 @@
     <clipPath id="aboveHorizon"><rect x="0" y="0" width="1000" height="150"/></clipPath>
     <clipPath id="fFrame"><rect x="0" y="0" width="1000" height="180"/></clipPath>
   </defs>
+
+  <g transform="translate(0,44)">
 
   <rect width="1000" height="180" fill="#161616"/>
   <rect width="1000" height="180" fill="#1e1e1e" filter="url(#f_wood)"/>
@@ -191,4 +193,5 @@
 
   <rect x="5" y="5" width="990" height="170" fill="none" stroke="#0d0d0d" stroke-width="7"/>
   <rect x="11" y="11" width="978" height="158" fill="none" stroke="#454545" stroke-width="1.4"/>
+  </g>
 </svg>
