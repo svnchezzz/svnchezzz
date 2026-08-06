@@ -1,0 +1,77 @@
+<svg viewBox="0 0 1000 260" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- veta de la plancha de madera -->
+    <filter id="woodgrain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9 0.008" numOctaves="4" result="grain"/>
+      <feColorMatrix in="grain" type="saturate" values="0"/>
+      <feComponentTransfer result="tex">
+        <feFuncA type="linear" slope="0.16"/>
+      </feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="tex" operator="over"/>
+    </filter>
+    <!-- tinta desgastada / registro imperfecto -->
+    <filter id="inkbleed">
+      <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.5"/>
+    </filter>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" fill="#1a1a1a"/>
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#5a5a5a" stroke-width="1.6"/>
+    </pattern>
+    <pattern id="hatchLight" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="9" height="9" fill="#2e2e2e"/>
+      <line x1="0" y1="0" x2="0" y2="9" stroke="#8a8a8a" stroke-width="1.2"/>
+    </pattern>
+  </defs>
+
+  <!-- papel / fondo entintado -->
+  <rect width="1000" height="260" fill="#161616"/>
+  <rect width="1000" height="260" fill="#1e1e1e" filter="url(#woodgrain)"/>
+
+  <!-- disco solar (impresión plana, sin degradado, como el grabado) -->
+  <circle cx="812" cy="86" r="46" fill="#d8d8d8" filter="url(#inkbleed)"/>
+  <circle cx="812" cy="86" r="46" fill="none" stroke="#0d0d0d" stroke-width="3"/>
+
+  <!-- montaña al fondo con tramado -->
+  <g filter="url(#inkbleed)">
+    <path d="M560 205 L700 92 L742 128 L780 96 L920 205 Z" fill="url(#hatchLight)" stroke="#0d0d0d" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M700 92 L742 128 L780 96 L757 118 L742 108 L722 122 Z" fill="#e6e6e6" stroke="#0d0d0d" stroke-width="2"/>
+  </g>
+
+  <!-- ola principal: contornos gruesos, espuma en garras -->
+  <g filter="url(#inkbleed)">
+    <path d="M-20 232 C 90 232, 130 150, 232 150 C 320 150, 342 206, 420 206 C 486 206, 508 168, 570 176 L 570 260 L -20 260 Z"
+          fill="url(#hatch)" stroke="#0d0d0d" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M-20 232 C 90 232, 130 150, 232 150 C 300 150, 330 186, 384 198"
+          fill="none" stroke="#e6e6e6" stroke-width="4.5" stroke-linecap="round"/>
+    <!-- garras de espuma -->
+    <path d="M232 150 C 246 132, 268 128, 282 138 C 272 132, 254 138, 246 152"
+          fill="#e6e6e6" stroke="#0d0d0d" stroke-width="2.2"/>
+    <path d="M180 168 C 192 150, 214 146, 226 156 C 216 150, 198 156, 192 170"
+          fill="#c9c9c9" stroke="#0d0d0d" stroke-width="2.2"/>
+    <path d="M110 196 C 122 180, 142 177, 152 186 C 143 181, 127 186, 121 198"
+          fill="#a8a8a8" stroke="#0d0d0d" stroke-width="2"/>
+  </g>
+
+  <!-- ola secundaria -->
+  <g filter="url(#inkbleed)" opacity="0.85">
+    <path d="M420 246 C 500 246, 530 212, 604 216 C 676 220, 700 244, 780 244 L 1020 244 L 1020 260 L 420 260 Z"
+          fill="#2a2a2a" stroke="#0d0d0d" stroke-width="3"/>
+  </g>
+
+  <!-- título entintado -->
+  <text x="70" y="96" font-family="Georgia, 'Times New Roman', serif" font-size="66" font-weight="bold"
+        fill="#ededed" stroke="#0d0d0d" stroke-width="1.5" letter-spacing="4">svnchezzz</text>
+  <text x="74" y="128" font-family="Georgia, serif" font-size="17" fill="#9a9a9a" letter-spacing="7">DATA · AUTOMATION · AI</text>
+
+  <!-- sello hanko en gris grabado -->
+  <g filter="url(#inkbleed)">
+    <rect x="70" y="146" width="46" height="46" fill="none" stroke="#b0b0b0" stroke-width="3"/>
+    <text x="93" y="170" text-anchor="middle" font-size="17" fill="#d0d0d0" font-family="serif">乱</text>
+    <text x="93" y="187" text-anchor="middle" font-size="17" fill="#d0d0d0" font-family="serif">機</text>
+  </g>
+
+  <!-- borde de plancha -->
+  <rect x="6" y="6" width="988" height="248" fill="none" stroke="#0d0d0d" stroke-width="7"/>
+  <rect x="12" y="12" width="976" height="236" fill="none" stroke="#4a4a4a" stroke-width="1.5"/>
+</svg>
