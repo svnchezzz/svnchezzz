@@ -76,6 +76,4 @@ Driven by everything that unites <b>data + automation</b>: record-keeping system
   <i>「乱中有機」 — In the midst of chaos, there is also opportunity.</i>
 </div>
 
-<br>
-
 <img src="./footer-ukiyoe.svg" width="100%" alt="" />
