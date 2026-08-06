@@ -1,83 +1,787 @@
-<svg viewBox="0 0 1000 260" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1000 360" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <filter id="woodgrain" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9 0.008" numOctaves="4" result="grain"/>
-      <feColorMatrix in="grain" type="saturate" values="0"/>
-      <feComponentTransfer result="tex"><feFuncA type="linear" slope="0.16"/></feComponentTransfer>
-      <feComposite in="SourceGraphic" in2="tex" operator="over"/>
+    <!-- veta de madera: turbulencia estirada en horizontal -->
+    <filter id="hdrWood" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.004 0.62" numOctaves="5" seed="7" result="g"/>
+      <feColorMatrix in="g" type="saturate" values="0"/>
+      <feComponentTransfer result="t"><feFuncA type="linear" slope="0.27"/></feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="t" operator="over"/>
     </filter>
-    <filter id="inkbleed">
+    <!-- segunda veta, mas gruesa, para dar profundidad a la tabla -->
+    <filter id="hdrWood2" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.002 0.26" numOctaves="3" seed="23" result="g"/>
+      <feColorMatrix in="g" type="saturate" values="0"/>
+      <feComponentTransfer result="t"><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="t" operator="over"/>
+    </filter>
+    <filter id="hdrGrain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" result="g"/>
+      <feColorMatrix in="g" type="saturate" values="0"/>
+      <feComponentTransfer result="t"><feFuncA type="linear" slope="0.05"/></feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="t" operator="over"/>
+    </filter>
+    <!-- degradado calido tenue, como madera entintada -->
+    <linearGradient id="hdrPlank" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#22201d"/>
+      <stop offset="42%"  stop-color="#191817" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#141312"/>
+    </linearGradient>
+    <filter id="hdrInk">
       <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" result="n"/>
-      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.5"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/>
+    </filter>
+    <radialGradient id="hdrGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e0b845" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <!-- petalo de sakura -->
+    <g id="hdrPetal">
+      <path d="M0,-6 C 4.4,-4.4 7,0 4.4,4.4 C 2.6,7 -2.6,7 -4.4,4.4 C -7,0 -4.4,-4.4 0,-6 Z"
+            fill="#8f1414" stroke="#3d0808" stroke-width="0.8"/>
+      <path d="M0,-5 C 2.6,-3.4 3.4,0 1.7,3.4" fill="none" stroke="#c62b2b" stroke-width="0.8" opacity="0.85"/>
+    </g>
+    <pattern id="hdrSeigaiha" x="0" y="0" width="44" height="18" patternUnits="userSpaceOnUse">
+      <path d="M0,18 A22,18 0 0,1 44,18" fill="none" stroke="#3a3733" stroke-width="1.4"/>
+      <path d="M-11,18 A22,18 0 0,1 33,18" fill="none" stroke="#2b2926" stroke-width="1.2"/>
+      <path d="M11,18 A22,18 0 0,1 55,18" fill="none" stroke="#2b2926" stroke-width="1.2"/>
+    </pattern>
+    <clipPath id="hdrFrame"><rect x="0" y="0" width="1000" height="360"/></clipPath>
+  </defs>
+
+  <rect width="1000" height="360" fill="#141312"/>
+  <rect width="1000" height="360" fill="#1f1d1a" filter="url(#hdrWood2)"/>
+  <rect width="1000" height="360" fill="#1e1c1a" filter="url(#hdrWood)" opacity="0.85"/>
+  <rect width="1000" height="360" fill="url(#hdrPlank)" opacity="0.5"/>
+  <rect width="1000" height="360" fill="#1c1b19" filter="url(#hdrGrain)" opacity="0.5"/>
+
+  <g clip-path="url(#hdrFrame)">
+    <ellipse cx="742" cy="170" rx="300" ry="220" fill="url(#hdrGlow)"/>
+
+    <!-- enso: anillo de trazo conico, centrado en el casco -->
+    <path d="M743.9,30.0 L747.2,29.0 L750.5,28.1 L753.9,27.3 L757.2,26.6 L760.6,25.9 L764.0,25.3 L767.5,24.8 L770.9,24.4 L774.3,24.1 L777.8,23.9 L781.3,23.7 L784.8,23.6 L788.2,23.7 L791.7,23.8 L795.2,23.9 L798.7,24.2 L802.1,24.6 L805.6,25.0 L809.1,25.5 L812.5,26.2 L815.9,26.9 L819.3,27.6 L822.7,28.5 L826.1,29.4 L829.5,30.5 L832.8,31.6 L836.1,32.8 L839.4,34.1 L842.6,35.4 L845.8,36.8 L849.0,38.4 L852.1,39.9 L855.2,41.6 L858.3,43.3 L861.3,45.2 L864.2,47.0 L867.2,49.0 L870.0,51.0 L872.9,53.1 L875.7,55.3 L878.4,57.5 L881.0,59.8 L883.7,62.1 L886.2,64.5 L888.7,67.0 L891.2,69.6 L893.5,72.1 L895.9,74.8 L898.1,77.5 L900.3,80.2 L902.4,83.0 L904.5,85.9 L906.5,88.8 L908.4,91.7 L910.3,94.7 L912.0,97.7 L913.8,100.8 L915.4,103.9 L917.0,107.1 L918.4,110.2 L919.9,113.5 L921.2,116.7 L922.5,120.0 L923.7,123.3 L924.8,126.6 L925.8,129.9 L926.8,133.3 L927.6,136.7 L928.4,140.1 L929.2,143.5 L929.8,147.0 L930.4,150.4 L930.8,153.9 L931.2,157.4 L931.6,160.9 L931.8,164.4 L931.9,167.9 L932.0,171.4 L932.0,174.8 L931.9,178.3 L931.8,181.8 L931.5,185.3 L931.2,188.8 L930.8,192.2 L930.3,195.7 L929.7,199.1 L929.1,202.6 L928.4,206.0 L927.6,209.4 L926.7,212.7 L925.7,216.1 L924.7,219.4 L923.6,222.7 L922.4,226.0 L921.1,229.2 L919.8,232.4 L918.4,235.6 L916.9,238.7 L915.3,241.8 L913.7,244.9 L912.0,247.9 L910.2,250.9 L908.4,253.8 L906.5,256.7 L904.5,259.6 L902.5,262.4 L900.4,265.1 L898.2,267.8 L896.0,270.5 L893.7,273.1 L891.4,275.6 L889.0,278.1 L886.6,280.6 L884.1,282.9 L881.5,285.3 L878.9,287.5 L876.2,289.7 L873.5,291.8 L870.8,293.9 L868.0,295.9 L865.1,297.8 L862.3,299.7 L859.3,301.5 L856.4,303.3 L853.4,304.9 L850.3,306.5 L847.3,308.1 L844.2,309.5 L841.0,310.9 L837.9,312.2 L834.7,313.5 L831.4,314.6 L828.2,315.7 L824.9,316.8 L821.7,317.7 L818.3,318.6 L815.0,319.4 L811.7,320.1 L808.3,320.8 L805.0,321.3 L801.6,321.8 L798.2,322.3 L794.8,322.6 L791.4,322.9 L788.0,323.1 L784.6,323.2 L781.2,323.2 L777.8,323.2 L774.3,323.1 L770.9,322.9 L767.5,322.6 L764.1,322.3 L760.8,321.9 L757.4,321.4 L754.0,320.8 L750.7,320.2 L747.3,319.5 L744.0,318.7 L740.7,317.8 L737.5,316.9 L734.2,315.9 L731.0,314.8 L727.8,313.6 L724.6,312.4 L721.4,311.1 L718.3,309.7 L715.2,308.3 L712.2,306.8 L709.1,305.2 L706.2,303.6 L703.2,301.8 L700.3,300.0 L697.4,298.2 L694.6,296.3 L691.8,294.3 L689.1,292.2 L686.4,290.1 L683.8,288.0 L681.2,285.7 L678.7,283.4 L676.2,281.1 L673.8,278.7 L671.4,276.2 L669.1,273.7 L666.9,271.1 L664.7,268.5 L662.6,265.8 L660.5,263.1 L658.5,260.3 L656.6,257.5 L654.7,254.7 L652.9,251.8 L651.2,248.8 L649.5,245.8 L648.0,242.8 L646.4,239.7 L645.0,236.6 L643.7,233.5 L642.4,230.4 L641.2,227.2 L640.0,224.0 L639.0,220.7 L638.0,217.5 L637.1,214.2 L636.2,210.9 L635.5,207.5 L634.8,204.2 L634.3,200.8 L633.8,197.5 L633.3,194.1 L633.0,190.7 L632.7,187.3 L632.5,183.9 L632.4,180.6 L632.4,177.2 L632.5,173.8 L632.6,170.4 L632.8,167.0 L633.1,163.6 L633.5,160.3 L634.0,156.9 L634.5,153.6 L635.1,150.3 L635.8,147.0 L636.6,143.7 L637.5,140.4 L638.4,137.2 L639.4,134.0 L640.5,130.8 L641.7,127.6 L642.9,124.5 L644.2,121.4 L645.6,118.4 L647.1,115.3 L648.6,112.4 L650.2,109.4 L652.0,106.6 L653.7,103.8 L655.7,101.0 L657.9,98.5 L660.4,100.1 L659.4,103.2 L658.1,106.2 L656.8,109.2 L655.6,112.2 L654.5,115.2 L653.4,118.2 L652.4,121.2 L651.4,124.2 L650.5,127.3 L649.6,130.3 L648.8,133.4 L648.1,136.5 L647.4,139.6 L646.8,142.7 L646.3,145.8 L645.8,148.9 L645.4,152.0 L645.1,155.1 L644.8,158.2 L644.6,161.4 L644.5,164.5 L644.4,167.6 L644.4,170.7 L644.4,173.9 L644.5,177.0 L644.7,180.1 L645.0,183.2 L645.3,186.3 L645.6,189.4 L646.1,192.4 L646.6,195.5 L647.1,198.5 L647.7,201.6 L648.4,204.6 L649.2,207.6 L650.0,210.6 L650.9,213.6 L651.8,216.5 L652.8,219.5 L653.9,222.4 L655.0,225.3 L656.2,228.1 L657.4,231.0 L658.7,233.8 L660.1,236.6 L661.5,239.3 L663.0,242.0 L664.6,244.7 L666.2,247.4 L667.8,250.0 L669.6,252.6 L671.3,255.1 L673.2,257.6 L675.1,260.1 L677.0,262.5 L679.0,264.9 L681.1,267.2 L683.2,269.5 L685.3,271.7 L687.6,273.9 L689.8,276.1 L692.1,278.2 L694.5,280.2 L696.9,282.2 L699.4,284.1 L701.9,286.0 L704.4,287.8 L707.0,289.5 L709.6,291.2 L712.3,292.8 L715.0,294.4 L717.8,295.9 L720.6,297.3 L723.4,298.7 L726.2,299.9 L729.1,301.2 L732.0,302.3 L735.0,303.4 L737.9,304.4 L740.9,305.4 L743.9,306.2 L747.0,307.0 L750.0,307.7 L753.1,308.4 L756.1,308.9 L759.2,309.4 L762.3,309.9 L765.5,310.2 L768.6,310.5 L771.7,310.6 L774.8,310.8 L777.9,310.8 L781.1,310.8 L784.2,310.6 L787.3,310.5 L790.4,310.2 L793.5,309.9 L796.6,309.4 L799.7,308.9 L802.8,308.4 L805.8,307.8 L808.8,307.0 L811.8,306.3 L814.8,305.4 L817.8,304.5 L820.7,303.5 L823.7,302.5 L826.6,301.3 L829.4,300.1 L832.2,298.9 L835.0,297.6 L837.8,296.2 L840.5,294.7 L843.2,293.2 L845.9,291.7 L848.5,290.0 L851.1,288.4 L853.6,286.6 L856.1,284.8 L858.6,283.0 L861.0,281.1 L863.4,279.1 L865.7,277.1 L868.0,275.1 L870.2,273.0 L872.4,270.8 L874.5,268.6 L876.6,266.4 L878.7,264.1 L880.6,261.8 L882.6,259.4 L884.5,257.0 L886.3,254.6 L888.1,252.1 L889.8,249.6 L891.5,247.0 L893.1,244.4 L894.6,241.8 L896.1,239.1 L897.6,236.4 L899.0,233.7 L900.3,231.0 L901.5,228.2 L902.8,225.4 L903.9,222.6 L905.0,219.7 L906.0,216.8 L907.0,213.9 L907.9,211.0 L908.7,208.1 L909.5,205.1 L910.2,202.2 L910.9,199.2 L911.5,196.2 L912.0,193.2 L912.5,190.1 L912.8,187.1 L913.2,184.0 L913.4,181.0 L913.6,177.9 L913.7,174.8 L913.8,171.8 L913.8,168.7 L913.7,165.6 L913.6,162.5 L913.3,159.5 L913.1,156.4 L912.7,153.3 L912.3,150.2 L911.8,147.2 L911.2,144.1 L910.6,141.1 L909.9,138.1 L909.1,135.1 L908.3,132.1 L907.4,129.1 L906.4,126.2 L905.3,123.2 L904.2,120.3 L903.0,117.4 L901.8,114.6 L900.4,111.7 L899.0,108.9 L897.6,106.2 L896.1,103.4 L894.5,100.7 L892.8,98.1 L891.1,95.4 L889.3,92.9 L887.5,90.3 L885.6,87.8 L883.6,85.3 L881.6,82.9 L879.5,80.6 L877.4,78.2 L875.2,76.0 L873.0,73.8 L870.7,71.6 L868.3,69.5 L865.9,67.4 L863.5,65.4 L861.0,63.5 L858.4,61.6 L855.8,59.8 L853.2,58.0 L850.5,56.3 L847.8,54.7 L845.1,53.1 L842.3,51.6 L839.4,50.2 L836.6,48.8 L833.7,47.5 L830.8,46.2 L827.8,45.1 L824.8,44.0 L821.8,42.9 L818.8,41.9 L815.8,41.1 L812.7,40.2 L809.6,39.5 L806.5,38.8 L803.4,38.2 L800.2,37.6 L797.1,37.2 L793.9,36.7 L790.7,36.4 L787.5,36.2 L784.4,36.0 L781.2,35.9 L778.0,35.8 L774.8,35.9 L771.6,36.0 L768.4,36.1 L765.2,36.4 L762.0,36.7 L758.8,37.1 L755.7,37.5 L752.5,38.1 L749.4,38.6 L746.2,39.3 Z" fill="#413e38" opacity="0.5"/>
+    <path d="M743.9,30.0 L747.2,29.0 L750.5,28.1 L753.9,27.3 L757.2,26.6 L760.6,25.9 L764.0,25.3 L767.5,24.8 L770.9,24.4 L774.3,24.1 L777.8,23.9 L781.3,23.7 L784.8,23.6 L788.2,23.7 L791.7,23.8 L795.2,23.9 L798.7,24.2 L802.1,24.6 L805.6,25.0 L809.1,25.5 L812.5,26.2 L815.9,26.9 L819.3,27.6 L822.7,28.5 L826.1,29.4 L829.5,30.5 L832.8,31.6 L836.1,32.8 L839.4,34.1 L842.6,35.4 L845.8,36.8 L849.0,38.4 L852.1,39.9 L855.2,41.6 L858.3,43.3 L861.3,45.2 L864.2,47.0 L867.2,49.0 L870.0,51.0 L872.9,53.1 L875.7,55.3 L878.4,57.5 L881.0,59.8 L883.7,62.1 L886.2,64.5 L888.7,67.0 L891.2,69.6 L893.5,72.1 L895.9,74.8 L898.1,77.5 L900.3,80.2 L902.4,83.0 L904.5,85.9 L906.5,88.8 L908.4,91.7 L910.3,94.7 L912.0,97.7 L913.8,100.8 L915.4,103.9 L917.0,107.1 L918.4,110.2 L919.9,113.5 L921.2,116.7 L922.5,120.0 L923.7,123.3 L924.8,126.6 L925.8,129.9 L926.8,133.3 L927.6,136.7 L928.4,140.1 L929.2,143.5 L929.8,147.0 L930.4,150.4 L930.8,153.9 L931.2,157.4 L931.6,160.9 L931.8,164.4 L931.9,167.9 L932.0,171.4 L932.0,174.8 L931.9,178.3 L931.8,181.8 L931.5,185.3 L931.2,188.8 L930.8,192.2 L930.3,195.7 L929.7,199.1 L929.1,202.6 L928.4,206.0 L927.6,209.4 L926.7,212.7 L925.7,216.1 L924.7,219.4 L923.6,222.7 L922.4,226.0 L921.1,229.2 L919.8,232.4 L918.4,235.6 L916.9,238.7 L915.3,241.8 L913.7,244.9 L912.0,247.9 L910.2,250.9 L908.4,253.8 L906.5,256.7 L904.5,259.6 L902.5,262.4 L900.4,265.1 L898.2,267.8 L896.0,270.5 L893.7,273.1 L891.4,275.6 L889.0,278.1 L886.6,280.6 L884.1,282.9 L881.5,285.3 L878.9,287.5 L876.2,289.7 L873.5,291.8 L870.8,293.9 L868.0,295.9 L865.1,297.8 L862.3,299.7 L859.3,301.5 L856.4,303.3 L853.4,304.9 L850.3,306.5 L847.3,308.1 L844.2,309.5 L841.0,310.9 L837.9,312.2 L834.7,313.5 L831.4,314.6 L828.2,315.7 L824.9,316.8 L821.7,317.7 L818.3,318.6 L815.0,319.4 L811.7,320.1 L808.3,320.8 L805.0,321.3 L801.6,321.8 L798.2,322.3 L794.8,322.6 L791.4,322.9 L788.0,323.1 L784.6,323.2 L781.2,323.2 L777.8,323.2 L774.3,323.1 L770.9,322.9 L767.5,322.6 L764.1,322.3 L760.8,321.9 L757.4,321.4 L754.0,320.8 L750.7,320.2 L747.3,319.5 L744.0,318.7 L740.7,317.8 L737.5,316.9 L734.2,315.9 L731.0,314.8 L727.8,313.6 L724.6,312.4 L721.4,311.1 L718.3,309.7 L715.2,308.3 L712.2,306.8 L709.1,305.2 L706.2,303.6 L703.2,301.8 L700.3,300.0 L697.4,298.2 L694.6,296.3 L691.8,294.3 L689.1,292.2 L686.4,290.1 L683.8,288.0 L681.2,285.7 L678.7,283.4 L676.2,281.1 L673.8,278.7 L671.4,276.2 L669.1,273.7 L666.9,271.1 L664.7,268.5 L662.6,265.8 L660.5,263.1 L658.5,260.3 L656.6,257.5 L654.7,254.7 L652.9,251.8 L651.2,248.8 L649.5,245.8 L648.0,242.8 L646.4,239.7 L645.0,236.6 L643.7,233.5 L642.4,230.4 L641.2,227.2 L640.0,224.0 L639.0,220.7 L638.0,217.5 L637.1,214.2 L636.2,210.9 L635.5,207.5 L634.8,204.2 L634.3,200.8 L633.8,197.5 L633.3,194.1 L633.0,190.7 L632.7,187.3 L632.5,183.9 L632.4,180.6 L632.4,177.2 L632.5,173.8 L632.6,170.4 L632.8,167.0 L633.1,163.6 L633.5,160.3 L634.0,156.9 L634.5,153.6 L635.1,150.3 L635.8,147.0 L636.6,143.7 L637.5,140.4 L638.4,137.2 L639.4,134.0 L640.5,130.8 L641.7,127.6 L642.9,124.5 L644.2,121.4 L645.6,118.4 L647.1,115.3 L648.6,112.4 L650.2,109.4 L652.0,106.6 L653.7,103.8 L655.7,101.0 L657.9,98.5 L660.4,100.1 L659.4,103.2 L658.1,106.2 L656.8,109.2 L655.6,112.2 L654.5,115.2 L653.4,118.2 L652.4,121.2 L651.4,124.2 L650.5,127.3 L649.6,130.3 L648.8,133.4 L648.1,136.5 L647.4,139.6 L646.8,142.7 L646.3,145.8 L645.8,148.9 L645.4,152.0 L645.1,155.1 L644.8,158.2 L644.6,161.4 L644.5,164.5 L644.4,167.6 L644.4,170.7 L644.4,173.9 L644.5,177.0 L644.7,180.1 L645.0,183.2 L645.3,186.3 L645.6,189.4 L646.1,192.4 L646.6,195.5 L647.1,198.5 L647.7,201.6 L648.4,204.6 L649.2,207.6 L650.0,210.6 L650.9,213.6 L651.8,216.5 L652.8,219.5 L653.9,222.4 L655.0,225.3 L656.2,228.1 L657.4,231.0 L658.7,233.8 L660.1,236.6 L661.5,239.3 L663.0,242.0 L664.6,244.7 L666.2,247.4 L667.8,250.0 L669.6,252.6 L671.3,255.1 L673.2,257.6 L675.1,260.1 L677.0,262.5 L679.0,264.9 L681.1,267.2 L683.2,269.5 L685.3,271.7 L687.6,273.9 L689.8,276.1 L692.1,278.2 L694.5,280.2 L696.9,282.2 L699.4,284.1 L701.9,286.0 L704.4,287.8 L707.0,289.5 L709.6,291.2 L712.3,292.8 L715.0,294.4 L717.8,295.9 L720.6,297.3 L723.4,298.7 L726.2,299.9 L729.1,301.2 L732.0,302.3 L735.0,303.4 L737.9,304.4 L740.9,305.4 L743.9,306.2 L747.0,307.0 L750.0,307.7 L753.1,308.4 L756.1,308.9 L759.2,309.4 L762.3,309.9 L765.5,310.2 L768.6,310.5 L771.7,310.6 L774.8,310.8 L777.9,310.8 L781.1,310.8 L784.2,310.6 L787.3,310.5 L790.4,310.2 L793.5,309.9 L796.6,309.4 L799.7,308.9 L802.8,308.4 L805.8,307.8 L808.8,307.0 L811.8,306.3 L814.8,305.4 L817.8,304.5 L820.7,303.5 L823.7,302.5 L826.6,301.3 L829.4,300.1 L832.2,298.9 L835.0,297.6 L837.8,296.2 L840.5,294.7 L843.2,293.2 L845.9,291.7 L848.5,290.0 L851.1,288.4 L853.6,286.6 L856.1,284.8 L858.6,283.0 L861.0,281.1 L863.4,279.1 L865.7,277.1 L868.0,275.1 L870.2,273.0 L872.4,270.8 L874.5,268.6 L876.6,266.4 L878.7,264.1 L880.6,261.8 L882.6,259.4 L884.5,257.0 L886.3,254.6 L888.1,252.1 L889.8,249.6 L891.5,247.0 L893.1,244.4 L894.6,241.8 L896.1,239.1 L897.6,236.4 L899.0,233.7 L900.3,231.0 L901.5,228.2 L902.8,225.4 L903.9,222.6 L905.0,219.7 L906.0,216.8 L907.0,213.9 L907.9,211.0 L908.7,208.1 L909.5,205.1 L910.2,202.2 L910.9,199.2 L911.5,196.2 L912.0,193.2 L912.5,190.1 L912.8,187.1 L913.2,184.0 L913.4,181.0 L913.6,177.9 L913.7,174.8 L913.8,171.8 L913.8,168.7 L913.7,165.6 L913.6,162.5 L913.3,159.5 L913.1,156.4 L912.7,153.3 L912.3,150.2 L911.8,147.2 L911.2,144.1 L910.6,141.1 L909.9,138.1 L909.1,135.1 L908.3,132.1 L907.4,129.1 L906.4,126.2 L905.3,123.2 L904.2,120.3 L903.0,117.4 L901.8,114.6 L900.4,111.7 L899.0,108.9 L897.6,106.2 L896.1,103.4 L894.5,100.7 L892.8,98.1 L891.1,95.4 L889.3,92.9 L887.5,90.3 L885.6,87.8 L883.6,85.3 L881.6,82.9 L879.5,80.6 L877.4,78.2 L875.2,76.0 L873.0,73.8 L870.7,71.6 L868.3,69.5 L865.9,67.4 L863.5,65.4 L861.0,63.5 L858.4,61.6 L855.8,59.8 L853.2,58.0 L850.5,56.3 L847.8,54.7 L845.1,53.1 L842.3,51.6 L839.4,50.2 L836.6,48.8 L833.7,47.5 L830.8,46.2 L827.8,45.1 L824.8,44.0 L821.8,42.9 L818.8,41.9 L815.8,41.1 L812.7,40.2 L809.6,39.5 L806.5,38.8 L803.4,38.2 L800.2,37.6 L797.1,37.2 L793.9,36.7 L790.7,36.4 L787.5,36.2 L784.4,36.0 L781.2,35.9 L778.0,35.8 L774.8,35.9 L771.6,36.0 L768.4,36.1 L765.2,36.4 L762.0,36.7 L758.8,37.1 L755.7,37.5 L752.5,38.1 L749.4,38.6 L746.2,39.3 Z" fill="none" stroke="#5c574f" stroke-width="1.2" opacity="0.28"/>
+
+    <!-- columna de kanji: bushido, grabado en la tabla -->
+    <g font-family="serif" font-size="46" text-anchor="middle" opacity="0.9">
+      <text x="497" y="119" fill="#000000" opacity="0.5">武</text>
+      <text x="497" y="177" fill="#000000" opacity="0.5">士</text>
+      <text x="497" y="235" fill="#000000" opacity="0.5">道</text>
+      <text x="495" y="117" fill="#39362f">武</text>
+      <text x="495" y="175" fill="#39362f">士</text>
+      <text x="495" y="233" fill="#39362f">道</text>
+    </g>
+    <line x1="452" y1="72" x2="452" y2="282" stroke="#33302b" stroke-width="1.6" opacity="0.8"/>
+    <line x1="540" y1="72" x2="540" y2="282" stroke="#2b2926" stroke-width="1.2" opacity="0.7"/>
+
+    <g transform="translate(600,-6) scale(0.40)">
+
+  <defs>
+    <!-- ══════════ MATERIALES ══════════ -->
+    <radialGradient id="k_ironDome" cx="33%" cy="22%" r="84%">
+      <stop offset="0%"   stop-color="#8b95a3"/>
+      <stop offset="14%"  stop-color="#606a77"/>
+      <stop offset="36%"  stop-color="#3a404a"/>
+      <stop offset="64%"  stop-color="#22262d"/>
+      <stop offset="88%"  stop-color="#14161b"/>
+      <stop offset="100%" stop-color="#090a0d"/>
+    </radialGradient>
+
+    <linearGradient id="k_goldBlade" x1="0.06" y1="0" x2="0.94" y2="1">
+      <stop offset="0%"   stop-color="#fffbe4"/>
+      <stop offset="10%"  stop-color="#f7e08a"/>
+      <stop offset="26%"  stop-color="#e0b845"/>
+      <stop offset="42%"  stop-color="#a9791c"/>
+      <stop offset="55%"  stop-color="#7d570f"/>
+      <stop offset="68%"  stop-color="#d4a733"/>
+      <stop offset="84%"  stop-color="#8a6116"/>
+      <stop offset="100%" stop-color="#3f2c08"/>
+    </linearGradient>
+    <linearGradient id="k_goldTrim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#fff2bd"/>
+      <stop offset="42%"  stop-color="#e0b845"/>
+      <stop offset="100%" stop-color="#6b4a10"/>
+    </linearGradient>
+    <radialGradient id="k_goldDisc" cx="34%" cy="28%" r="78%">
+      <stop offset="0%"   stop-color="#fffae0"/>
+      <stop offset="22%"  stop-color="#f7e08a"/>
+      <stop offset="54%"  stop-color="#cf9d2b"/>
+      <stop offset="84%"  stop-color="#8a6116"/>
+      <stop offset="100%" stop-color="#412d08"/>
+    </radialGradient>
+
+    <linearGradient id="k_redLacquer" x1="0.12" y1="0" x2="0.88" y2="1">
+      <stop offset="0%"   stop-color="#e2564a"/>
+      <stop offset="18%"  stop-color="#b8242a"/>
+      <stop offset="52%"  stop-color="#7d1219"/>
+      <stop offset="100%" stop-color="#380610"/>
+    </linearGradient>
+    <linearGradient id="k_redSilk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#e86a5c"/>
+      <stop offset="46%"  stop-color="#a81f22"/>
+      <stop offset="100%" stop-color="#540b11"/>
+    </linearGradient>
+
+    <linearGradient id="k_steelLame" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0%"   stop-color="#79838f"/>
+      <stop offset="18%"  stop-color="#4a515b"/>
+      <stop offset="52%"  stop-color="#2a2f36"/>
+      <stop offset="82%"  stop-color="#181b20"/>
+      <stop offset="100%" stop-color="#0b0c0f"/>
+    </linearGradient>
+    <linearGradient id="k_maskGrad" x1="0.2" y1="0.02" x2="0.82" y2="1">
+      <stop offset="0%"   stop-color="#8d97a4"/>
+      <stop offset="18%"  stop-color="#5b636e"/>
+      <stop offset="44%"  stop-color="#383e47"/>
+      <stop offset="74%"  stop-color="#1f232a"/>
+      <stop offset="100%" stop-color="#0d1013"/>
+    </linearGradient>
+    <linearGradient id="k_visorGrad" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0%"   stop-color="#7d8794"/>
+      <stop offset="34%"  stop-color="#434a55"/>
+      <stop offset="76%"  stop-color="#1d2126"/>
+      <stop offset="100%" stop-color="#0a0c0f"/>
+    </linearGradient>
+
+    <radialGradient id="k_bg" cx="50%" cy="36%" r="74%">
+      <stop offset="0%"   stop-color="#262930"/>
+      <stop offset="48%"  stop-color="#14161a"/>
+      <stop offset="100%" stop-color="#07080a"/>
+    </radialGradient>
+    <radialGradient id="k_ambientGold" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#e0b845" stop-opacity="0.36"/>
+      <stop offset="52%"  stop-color="#8a6116" stop-opacity="0.13"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="k_ambientRed" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#c62828" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="k_specSweep" x1="0" y1="0" x2="1" y2="0.3">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="46%"  stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="54%"  stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="k_hotspot" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="38%"  stop-color="#c8d2e0" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="k_eyeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#ff6a4a" stop-opacity="0.85"/>
+      <stop offset="45%"  stop-color="#a81f22" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- ══════════ FILTROS ══════════ -->
+    <filter id="k_goldGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+        values="1.25 0 0 0 0.14   0 0.88 0 0 0.08   0 0 0.24 0 0   0 0 0 1 0" result="c"/>
+      <feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="k_redGlow" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+        values="1.35 0 0 0 0.09   0 0.18 0 0 0   0 0 0.18 0 0   0 0 0 0.9 0" result="c"/>
+      <feMerge><feMergeNode in="c"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="k_deepShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.78"/>
+    </filter>
+    <filter id="k_partShadow" x="-45%" y="-45%" width="190%" height="190%">
+      <feDropShadow dx="2" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.72"/>
+    </filter>
+    <filter id="k_softBlur"><feGaussianBlur stdDeviation="12"/></filter>
+    <filter id="k_microBlur"><feGaussianBlur stdDeviation="2.5"/></filter>
+    <filter id="k_tinyBlur"><feGaussianBlur stdDeviation="1.2"/></filter>
+
+    <filter id="k_hammered" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="4" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+      <feComponentTransfer result="t"><feFuncA type="linear" slope="0.11"/></feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="t" operator="over"/>
+    </filter>
+    <filter id="k_grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+      <feComponentTransfer result="t"><feFuncA type="linear" slope="0.07"/></feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="t" operator="over"/>
     </filter>
 
-    <!-- olas: indigo muy apagado -->
-    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-      <rect width="6" height="6" fill="#181c22"/>
-      <line x1="0" y1="0" x2="0" y2="6" stroke="#4d5a6b" stroke-width="1.6"/>
-    </pattern>
-    <!-- montana: gris con leve tinte frio -->
-    <pattern id="hatchLight" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-      <rect width="9" height="9" fill="#2b2e33"/>
-      <line x1="0" y1="0" x2="0" y2="9" stroke="#82868d" stroke-width="1.2"/>
-    </pattern>
-    <!-- sol: crema apenas calido -->
-    <radialGradient id="sunTint" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#e8ddcf"/>
-      <stop offset="100%" stop-color="#cfc6bb"/>
+    <!-- ══════════ RECORTES ══════════ -->
+    <clipPath id="k_domeClip">
+      <path d="M300,440 C 296,334 342,248 450,248 C 558,248 604,334 600,440
+               C 540,464 360,464 300,440 Z"/>
+    </clipPath>
+    <clipPath id="k_maskClip">
+      <path d="M354,518 C 348,556 352,588 364,614 C 378,646 406,672 450,690 C 494,672 522,646 536,614 C 548,588 552,556 546,518 Z"/>
+    </clipPath>
+    <clipPath id="k_hornLClip">
+      <path d="M330,450 C 314,362 284,270 226,184 C 204,154 178,126 152,108
+               C 138,99 120,116 132,134 C 148,168 172,202 196,232
+               C 254,312 336,398 442,452 Z"/>
+    </clipPath>
+    <clipPath id="k_hornRClip">
+      <path d="M570,450 C 586,362 616,270 674,184 C 696,154 722,126 748,108
+               C 762,99 780,116 768,134 C 752,168 728,202 704,232
+               C 646,312 564,398 458,452 Z"/>
+    </clipPath>
+
+    <!-- ══════════ PIEZAS ══════════ -->
+    <radialGradient id="k_rivetG" cx="32%" cy="28%" r="72%">
+      <stop offset="0%"   stop-color="#f2f6fa"/>
+      <stop offset="30%"  stop-color="#a5aeba"/>
+      <stop offset="68%"  stop-color="#4e5660"/>
+      <stop offset="100%" stop-color="#101216"/>
+    </radialGradient>
+    <g id="k_rivet">
+      <circle cy="1.4" r="6.6" fill="#050608" opacity="0.85"/>
+      <circle r="5.8" fill="url(#k_rivetG)" stroke="#08090b" stroke-width="1.2"/>
+      <circle cx="-1.8" cy="-2" r="1.8" fill="#ffffff" opacity="0.8"/>
+    </g>
+    <g id="k_rivetSm">
+      <circle cy="1" r="4.8" fill="#050608" opacity="0.85"/>
+      <circle r="4.1" fill="url(#k_rivetG)" stroke="#08090b" stroke-width="1"/>
+      <circle cx="-1.2" cy="-1.4" r="1.3" fill="#ffffff" opacity="0.75"/>
+    </g>
+    <g id="k_rivetGold">
+      <circle cy="1" r="5.4" fill="#241804" opacity="0.9"/>
+      <circle r="4.6" fill="url(#k_goldDisc)" stroke="#241804" stroke-width="1"/>
+      <circle cx="-1.3" cy="-1.5" r="1.4" fill="#fffae0" opacity="0.85"/>
+    </g>
+
+    <g id="k_tassel">
+      <path d="M0,0 C -14,8 -14,27 0,34 C 14,27 14,8 0,0 Z"
+            fill="url(#k_redSilk)" stroke="#2a050a" stroke-width="2.6"/>
+      <path d="M-6,7 C -9,16 -9,25 -4,31" fill="none" stroke="#f08a78" stroke-width="2" opacity="0.55"/>
+      <g stroke="url(#k_redSilk)" stroke-width="5" stroke-linecap="round">
+        <line x1="-11" y1="32" x2="-16" y2="82"/>
+        <line x1="-5"  y1="34" x2="-7"  y2="92"/>
+        <line x1="2"   y1="34" x2="3"   y2="94"/>
+        <line x1="9"   y1="32" x2="14"  y2="84"/>
+      </g>
+      <g stroke="#f08a78" stroke-width="1.4" opacity="0.4" stroke-linecap="round">
+        <line x1="-11" y1="36" x2="-15" y2="76"/>
+        <line x1="2"   y1="38" x2="3"   y2="86"/>
+      </g>
+    </g>
+  </defs>
+
+  <!-- ══════════════════ ESCENA ══════════════════ -->
+  
+  <ellipse cx="450" cy="290" rx="392" ry="308" fill="url(#k_ambientGold)">
+    <animate attributeName="opacity" values="0.72;1;0.72" dur="7s" repeatCount="indefinite"/>
+  </ellipse>
+  <ellipse cx="450" cy="650" rx="340" ry="240" fill="url(#k_ambientRed)">
+    <animate attributeName="opacity" values="0.58;1;0.58" dur="9s" repeatCount="indefinite"/>
+  </ellipse>
+  
+
+  <g filter="url(#k_deepShadow)">
+
+    <!-- ═══════════ CORDONES ═══════════ -->
+    <g filter="url(#k_redGlow)">
+      <path d="M312,556 C 286,640 278,716 292,802" fill="none" stroke="url(#k_redSilk)" stroke-width="10" stroke-linecap="round"/>
+      <path d="M588,556 C 614,640 622,716 608,802" fill="none" stroke="url(#k_redSilk)" stroke-width="10" stroke-linecap="round"/>
+      <path d="M310,564 C 288,642 282,714 294,794" fill="none" stroke="#f08a78" stroke-width="2.2" opacity="0.4"/>
+      <g transform="translate(292,802)"><use href="#k_tassel"/></g>
+      <g transform="translate(608,802)"><use href="#k_tassel"/></g>
+    </g>
+
+    <!-- ═══════════ SHIKORO ═══════════ -->
+    <g>
+      <g filter="url(#k_partShadow)">
+        <path d="M300,474 C 362,508 538,508 600,474 L 608,526 C 542,560 358,560 292,526 Z" fill="url(#k_steelLame)" stroke="#08090b" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M303,476 C 364,510 536,510 597,476" fill="none" stroke="url(#k_goldTrim)" stroke-width="3.4" opacity="0.90"/>
+        <g stroke="#0a0c0f" stroke-width="2.4" opacity="0.9"><path d="M333,487 L327,539"/><path d="M367,498 L362,550"/><path d="M400,504 L397,556"/><path d="M433,508 L432,560"/><path d="M467,508 L468,560"/><path d="M500,504 L503,556"/><path d="M533,498 L538,550"/><path d="M567,487 L573,539"/></g>
+        <g stroke="#9aa4b1" stroke-width="1.1" opacity="0.40"><path d="M336,487 L330,539"/><path d="M370,498 L365,550"/><path d="M403,504 L400,556"/><path d="M436,508 L435,560"/><path d="M470,508 L471,560"/><path d="M503,504 L506,556"/><path d="M536,498 L541,550"/><path d="M570,487 L576,539"/></g>
+        <g stroke="url(#k_redSilk)" stroke-width="6.2" stroke-linecap="round"><path d="M335,496 L343,546 M349,496 L329,546"/><path d="M407,512 L419,562 M421,512 L405,562"/><path d="M479,512 L495,562 M493,512 L481,562"/><path d="M551,496 L571,546 M565,496 L557,546"/></g>
+        <path d="M306,481 C 366,515 534,515 594,481" fill="none" stroke="#b6c0cd" stroke-width="2.4" opacity="0.50"/>
+      </g>
+
+      <g filter="url(#k_partShadow)">
+        <path d="M286,522 C 348,559 552,559 614,522 L 623,574 C 557,611 343,611 277,574 Z" fill="url(#k_steelLame)" stroke="#08090b" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M289,524 C 350,561 550,561 611,524" fill="none" stroke="url(#k_goldTrim)" stroke-width="3.4" opacity="0.86"/>
+        <g stroke="#0a0c0f" stroke-width="2.4" opacity="0.9"><path d="M322,537 L315,589"/><path d="M359,548 L354,600"/><path d="M395,555 L392,607"/><path d="M432,559 L431,611"/><path d="M468,559 L469,611"/><path d="M505,555 L508,607"/><path d="M541,548 L546,600"/><path d="M578,537 L585,589"/></g>
+        <g stroke="#9aa4b1" stroke-width="1.1" opacity="0.38"><path d="M325,537 L318,589"/><path d="M362,548 L357,600"/><path d="M398,555 L395,607"/><path d="M435,559 L434,611"/><path d="M471,559 L472,611"/><path d="M508,555 L511,607"/><path d="M544,548 L549,600"/><path d="M581,537 L588,589"/></g>
+        <g stroke="url(#k_redSilk)" stroke-width="6.5" stroke-linecap="round"><path d="M325,546 L332,596 M339,546 L318,596"/><path d="M404,563 L415,613 M418,563 L401,613"/><path d="M482,563 L499,613 M496,563 L485,613"/><path d="M561,546 L582,596 M575,546 L568,596"/></g>
+        <path d="M292,529 C 352,566 548,566 608,529" fill="none" stroke="#b6c0cd" stroke-width="2.4" opacity="0.46"/>
+      </g>
+
+      <g filter="url(#k_partShadow)">
+        <path d="M272,570 C 334,610 566,610 628,570 L 638,622 C 572,662 328,662 262,622 Z" fill="url(#k_steelLame)" stroke="#08090b" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M275,572 C 336,612 564,612 625,572" fill="none" stroke="url(#k_goldTrim)" stroke-width="3.4" opacity="0.82"/>
+        <g stroke="#0a0c0f" stroke-width="2.4" opacity="0.9"><path d="M312,586 L304,638"/><path d="M351,598 L346,650"/><path d="M391,606 L387,658"/><path d="M430,610 L429,662"/><path d="M470,610 L471,662"/><path d="M509,606 L513,658"/><path d="M549,598 L554,650"/><path d="M588,586 L596,638"/></g>
+        <g stroke="#9aa4b1" stroke-width="1.1" opacity="0.36"><path d="M315,586 L307,638"/><path d="M354,598 L349,650"/><path d="M394,606 L390,658"/><path d="M433,610 L432,662"/><path d="M473,610 L474,662"/><path d="M512,606 L516,658"/><path d="M552,598 L557,650"/><path d="M591,586 L599,638"/></g>
+        <g stroke="url(#k_redSilk)" stroke-width="6.8" stroke-linecap="round"><path d="M315,595 L322,645 M329,595 L308,645"/><path d="M400,614 L412,664 M414,614 L398,664"/><path d="M486,614 L502,664 M500,614 L488,664"/><path d="M571,595 L592,645 M585,595 L578,645"/></g>
+        <path d="M278,577 C 338,617 562,617 622,577" fill="none" stroke="#b6c0cd" stroke-width="2.4" opacity="0.43"/>
+      </g>
+
+      <g filter="url(#k_partShadow)">
+        <path d="M258,618 C 320,661 580,661 642,618 L 653,670 C 587,713 313,713 247,670 Z" fill="url(#k_steelLame)" stroke="#08090b" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M261,620 C 322,663 578,663 639,620" fill="none" stroke="url(#k_goldTrim)" stroke-width="3.4" opacity="0.78"/>
+        <g stroke="#0a0c0f" stroke-width="2.4" opacity="0.9"><path d="M301,635 L292,687"/><path d="M343,648 L337,700"/><path d="M386,656 L382,708"/><path d="M429,660 L427,712"/><path d="M471,660 L473,712"/><path d="M514,656 L518,708"/><path d="M557,648 L563,700"/><path d="M599,635 L608,687"/></g>
+        <g stroke="#9aa4b1" stroke-width="1.1" opacity="0.34"><path d="M304,635 L295,687"/><path d="M346,648 L340,700"/><path d="M389,656 L385,708"/><path d="M432,660 L430,712"/><path d="M474,660 L476,712"/><path d="M517,656 L521,708"/><path d="M560,648 L566,700"/><path d="M602,635 L611,687"/></g>
+        <g stroke="url(#k_redSilk)" stroke-width="7.1" stroke-linecap="round"><path d="M305,645 L311,695 M319,645 L297,695"/><path d="M397,665 L408,715 M411,665 L394,715"/><path d="M489,665 L506,715 M503,665 L492,715"/><path d="M581,645 L603,695 M595,645 L589,695"/></g>
+        <path d="M264,625 C 324,668 576,668 636,625" fill="none" stroke="#b6c0cd" stroke-width="2.4" opacity="0.40"/>
+      </g>
+
+      <g filter="url(#k_partShadow)">
+        <path d="M244,666 C 306,712 594,712 656,666 L 668,718 C 602,764 298,764 232,718 Z" fill="url(#k_steelLame)" stroke="#08090b" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M247,668 C 308,714 592,714 653,668" fill="none" stroke="url(#k_goldTrim)" stroke-width="3.4" opacity="0.74"/>
+        <g stroke="#0a0c0f" stroke-width="2.4" opacity="0.9"><path d="M290,684 L280,736"/><path d="M336,698 L329,750"/><path d="M381,707 L377,759"/><path d="M427,711 L426,763"/><path d="M473,711 L474,763"/><path d="M519,707 L523,759"/><path d="M564,698 L571,750"/><path d="M610,684 L620,736"/></g>
+        <g stroke="#9aa4b1" stroke-width="1.1" opacity="0.32"><path d="M293,684 L283,736"/><path d="M339,698 L332,750"/><path d="M384,707 L380,759"/><path d="M430,711 L429,763"/><path d="M476,711 L477,763"/><path d="M522,707 L526,759"/><path d="M567,698 L574,750"/><path d="M613,684 L623,736"/></g>
+        <g stroke="url(#k_redSilk)" stroke-width="7.4" stroke-linecap="round"><path d="M295,694 L300,744 M309,694 L286,744"/><path d="M394,715 L405,765 M408,715 L391,765"/><path d="M492,715 L509,765 M506,715 L495,765"/><path d="M591,694 L614,744 M605,694 L600,744"/></g>
+        <path d="M250,673 C 310,719 590,719 650,673" fill="none" stroke="#b6c0cd" stroke-width="2.4" opacity="0.36"/>
+        <path d="M232,718 C 298,764 602,764 668,718" fill="none" stroke="url(#k_goldTrim)" stroke-width="8" filter="url(#k_goldGlow)"/>
+      </g>
+    </g>
+
+    <!-- ═══════════ CUENCA OCULAR: mirada colerica ═══════════ -->
+    <g transform="translate(0,26)">
+      <path d="M330,442 C 342,524 558,524 570,442 C 566,552 334,552 330,442 Z" fill="#040507"/>
+      <ellipse cx="396" cy="504" rx="56" ry="28" fill="url(#k_eyeGlow)" opacity="0.72" filter="url(#k_microBlur)"/>
+      <ellipse cx="504" cy="504" rx="56" ry="28" fill="url(#k_eyeGlow)" opacity="0.58" filter="url(#k_microBlur)"/>
+
+      <!-- rendijas: el angulo interno cae hacia la nariz -->
+      <path d="M352,486 C 386,492 420,502 448,516
+               C 424,526 386,518 356,506 Z"
+            fill="#0c0e12" stroke="#010203" stroke-width="2"/>
+      <path d="M548,486 C 514,492 480,502 452,516
+               C 476,526 514,518 544,506 Z"
+            fill="#0c0e12" stroke="#010203" stroke-width="2"/>
+
+      <!-- iris encendidos -->
+      <ellipse cx="398" cy="504" rx="16" ry="9" fill="#8f1414" transform="rotate(16 398 504)"/>
+      <ellipse cx="502" cy="504" rx="16" ry="9" fill="#75111a" transform="rotate(-16 502 504)"/>
+      <ellipse cx="398" cy="504" rx="9" ry="5.5" fill="#d8433a" transform="rotate(16 398 504)"/>
+      <ellipse cx="502" cy="504" rx="9" ry="5.5" fill="#a81f22" transform="rotate(-16 502 504)"/>
+      <ellipse cx="398" cy="503" rx="3.6" ry="2.6" fill="#ffb199"/>
+      <circle cx="393" cy="500" r="2.6" fill="#ffffff" opacity="0.9"/>
+      <circle cx="497" cy="500" r="2" fill="#ffffff" opacity="0.65"/>
+
+      <!-- CEJAS: bajan hacia el centro, la senal de la ira -->
+      <path d="M340,466 C 378,472 416,486 446,504" fill="none" stroke="#010203" stroke-width="15" stroke-linecap="round"/>
+      <path d="M560,466 C 522,472 484,486 454,504" fill="none" stroke="#010203" stroke-width="15" stroke-linecap="round"/>
+      <path d="M344,470 C 380,476 414,488 442,504" fill="none" stroke="#5e6772" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+      <path d="M556,470 C 520,476 486,488 458,504" fill="none" stroke="#464e58" stroke-width="4" stroke-linecap="round" opacity="0.45"/>
+
+      <!-- entrecejo fruncido -->
+      <g stroke="#010203" stroke-width="5" stroke-linecap="round" opacity="0.9">
+        <path d="M438,486 C 435,496 434,504 436,512"/>
+        <path d="M462,486 C 465,496 466,504 464,512"/>
+      </g>
+      <g stroke="#6f7883" stroke-width="1.8" stroke-linecap="round" opacity="0.5">
+        <path d="M441,488 C 438,497 437,504 439,510"/>
+      </g>
+
+      <!-- sombra del reborde de la visera -->
+      <path d="M330,442 C 342,486 558,486 570,442 C 562,462 338,462 330,442 Z"
+            fill="#010203" opacity="0.9" filter="url(#k_tinyBlur)"/>
+    </g>
+
+    <!-- ═══════════ MENPO (ressei: expresion feroz) ═══════════ -->
+    <g filter="url(#k_partShadow)" transform="translate(450,34) scale(1.17,0.97) translate(-450,0)">
+      <!-- silueta angulosa: pomulos anchos y menton cuadrado -->
+      <path d="M354,518
+               C 348,556 352,588 364,614
+               C 378,646 406,672 450,690
+               C 494,672 522,646 536,614
+               C 548,588 552,556 546,518 Z"
+            fill="url(#k_maskGrad)" stroke="#08090b" stroke-width="4.6" stroke-linejoin="round"/>
+
+      <g clip-path="url(#k_maskClip)">
+        <ellipse cx="396" cy="570" rx="52" ry="58" fill="#c2ccd9" opacity="0.26" filter="url(#k_microBlur)"/>
+        <ellipse cx="522" cy="582" rx="44" ry="56" fill="#000000" opacity="0.3" filter="url(#k_microBlur)"/>
+        <ellipse cx="450" cy="668" rx="66" ry="34" fill="#000000" opacity="0.34" filter="url(#k_microBlur)"/>
+
+        <!-- PLIEGUES NASOLABIALES: dos por lado, profundos -->
+        <g stroke-linecap="round" fill="none">
+          <g stroke="#05070a" stroke-width="5.5" opacity="0.85">
+            <path d="M394,530 C 388,562 394,592 410,616"/>
+            <path d="M506,530 C 512,562 506,592 490,616"/>
+          </g>
+          <g stroke="#05070a" stroke-width="3.6" opacity="0.7">
+            <path d="M368,548 C 366,576 374,600 388,618"/>
+            <path d="M532,548 C 534,576 526,600 512,618"/>
+          </g>
+          <g stroke="#c2ccd9" stroke-width="2.4" opacity="0.5">
+            <path d="M399,528 C 393,560 399,590 415,614"/>
+            <path d="M373,546 C 371,574 379,598 393,616"/>
+          </g>
+          <g stroke="#8d97a4" stroke-width="2.4" opacity="0.34">
+            <path d="M501,528 C 507,560 501,590 485,614"/>
+            <path d="M527,546 C 529,574 521,598 507,616"/>
+          </g>
+        </g>
+        <path d="M342,506 C 374,534 526,534 558,506 L 558,494 L 342,494 Z" fill="#050608" opacity="0.6"/>
+      </g>
+
+      <!-- NARIZ AGUILENA: caballete alto, punta ganchuda, aletas marcadas -->
+      <path d="M450,524
+               C 442,542 437,568 436,594
+               C 435,606 441,616 450,618
+               C 459,616 465,606 464,594
+               C 463,568 458,542 450,524 Z"
+            fill="#454c56" stroke="#08090b" stroke-width="3" stroke-linejoin="round"/>
+      <!-- caballete iluminado -->
+      <path d="M450,528 C 445,546 442,570 441,592" fill="none" stroke="#eef2f7" stroke-width="2.6" opacity="0.5" stroke-linecap="round"/>
+      
+      <!-- lado en sombra -->
+      <path d="M456,534 C 462,554 465,574 464,594" fill="none" stroke="#04060a" stroke-width="3.4" opacity="0.85" stroke-linecap="round"/>
+      <!-- aletas y fosas nasales -->
+      <path d="M436,598 C 430,608 436,616 445,615" fill="none" stroke="#08090b" stroke-width="2.6"/>
+      <path d="M464,598 C 470,608 464,616 455,615" fill="none" stroke="#08090b" stroke-width="2.6"/>
+      <ellipse cx="441" cy="610" rx="4.4" ry="3" fill="#030406" transform="rotate(-18 441 610)"/>
+      <ellipse cx="459" cy="610" rx="4.4" ry="3" fill="#030406" transform="rotate(18 459 610)"/>
+      
+
+      <!-- BOCA: hendidura horizontal, labios de hierro cerrados -->
+      <!-- labio superior: banda plana -->
+      <path d="M392,632 C 424,627 476,627 508,632
+               L 506,646 C 476,642 424,642 394,646 Z"
+            fill="#4a525d" stroke="#08090b" stroke-width="3.2" stroke-linejoin="round"/>
+      <path d="M402,634 C 428,631 472,631 498,634" fill="none" stroke="#c8d1dc" stroke-width="2.6" opacity="0.45"/>
+
+      <!-- la ranura: recta, con los extremos apenas hundidos -->
+      <path d="M392,652 L 406,647 L 494,647 L 508,652"
+            fill="none" stroke="#010203" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="M408,649 L 492,649" stroke="#000000" stroke-width="3" opacity="0.9"/>
+
+      <!-- labio inferior -->
+      <path d="M394,650 C 424,654 476,654 506,650
+               L 503,664 C 476,669 424,669 397,664 Z"
+            fill="#2b3138" stroke="#08090b" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M410,658 C 428,661 472,661 490,658" fill="none" stroke="#8d97a4" stroke-width="1.9" opacity="0.4"/>
+
+      <!-- comisuras: remaches que rematan la ranura -->
+      <circle cx="392" cy="650" r="4.4" fill="#1a1e23" stroke="#08090b" stroke-width="1.8"/>
+      <circle cx="508" cy="650" r="4.4" fill="#1a1e23" stroke="#08090b" stroke-width="1.8"/>
+
+      <!-- pliegues que caen desde las comisuras -->
+      <path d="M388,652 C 380,664 377,678 380,692" fill="none" stroke="#04060a" stroke-width="3.4" opacity="0.7" stroke-linecap="round"/>
+      <path d="M512,652 C 520,664 523,678 520,692" fill="none" stroke="#04060a" stroke-width="3.4" opacity="0.7" stroke-linecap="round"/>
+
+      <!-- MENTON: placa saliente -->
+      <path d="M410,664 C 426,690 474,690 490,664
+               C 484,700 416,700 410,664 Z"
+            fill="#333942" stroke="#08090b" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M418,670 C 431,688 469,688 482,670" fill="none" stroke="#a5aeba" stroke-width="2.6" opacity="0.45"/>
+
+      <!-- ASE-NAGASHI NO ANA: orificio de drenaje bajo el menton -->
+      <ellipse cx="450" cy="686" rx="8" ry="5" fill="#010203"/>
+      <ellipse cx="450" cy="686" rx="8" ry="5" fill="none" stroke="#79828f" stroke-width="1.8" opacity="0.75"/>
+      <path d="M444,683 C 447,681 453,681 456,683" fill="none" stroke="#c2ccd9" stroke-width="1.3" opacity="0.5"/>
+
+      <!-- remaches del menpo -->
+      <use href="#k_rivetSm" x="360" y="534"/>
+      <use href="#k_rivetSm" x="540" y="534"/>
+    </g>
+
+    <!-- ═══════════ FUKIGAESHI ═══════════ -->
+    <g filter="url(#k_partShadow)">
+      <path d="M310,452 C 256,458 226,508 236,562 C 286,550 316,506 322,458 Z"
+            fill="url(#k_redLacquer)" stroke="#08090b" stroke-width="4.4" stroke-linejoin="round"/>
+      <path d="M310,452 C 256,458 226,508 236,562" fill="none" stroke="url(#k_goldTrim)" stroke-width="5.4" filter="url(#k_goldGlow)"/>
+      <path d="M304,464 C 262,472 242,506 246,546" fill="none" stroke="#f08a78" stroke-width="2.6" opacity="0.4"/>
+      <path d="M316,470 C 280,484 258,516 258,552" fill="none" stroke="#3a0810" stroke-width="3" opacity="0.6"/>
+
+      <path d="M590,452 C 644,458 674,508 664,562 C 614,550 584,506 578,458 Z"
+            fill="url(#k_redLacquer)" stroke="#08090b" stroke-width="4.4" stroke-linejoin="round"/>
+      <path d="M590,452 C 644,458 674,508 664,562" fill="none" stroke="url(#k_goldTrim)" stroke-width="5.4" filter="url(#k_goldGlow)"/>
+      <path d="M584,470 C 620,484 642,516 642,552" fill="none" stroke="#3a0810" stroke-width="3" opacity="0.7"/>
+
+      <g filter="url(#k_goldGlow)">
+        <circle cx="274" cy="508" r="23" fill="none" stroke="url(#k_goldTrim)" stroke-width="4.6"/>
+        <circle cx="274" cy="508" r="8.5" fill="url(#k_goldDisc)"/>
+        <g stroke="url(#k_goldTrim)" stroke-width="3.6" stroke-linecap="round">
+          <line x1="274" y1="487" x2="274" y2="495"/><line x1="274" y1="521" x2="274" y2="529"/>
+          <line x1="253" y1="508" x2="261" y2="508"/><line x1="287" y1="508" x2="295" y2="508"/>
+        </g>
+        <circle cx="626" cy="508" r="23" fill="none" stroke="url(#k_goldTrim)" stroke-width="4.6"/>
+        <circle cx="626" cy="508" r="8.5" fill="url(#k_goldDisc)"/>
+        <g stroke="url(#k_goldTrim)" stroke-width="3.6" stroke-linecap="round">
+          <line x1="626" y1="487" x2="626" y2="495"/><line x1="626" y1="521" x2="626" y2="529"/>
+          <line x1="605" y1="508" x2="613" y2="508"/><line x1="639" y1="508" x2="647" y2="508"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- sombras de contacto: donde una pieza se apoya sobre otra -->
+    <g filter="url(#k_microBlur)">
+      <path d="M300,446 C 360,472 540,472 600,446 C 540,492 360,492 300,446 Z" fill="#000000" opacity="0.55"/>
+      <ellipse cx="450" cy="516" rx="120" ry="26" fill="#000000" opacity="0.4"/>
+      <ellipse cx="300" cy="470" rx="46" ry="30" fill="#000000" opacity="0.45"/>
+      <ellipse cx="600" cy="470" rx="46" ry="30" fill="#000000" opacity="0.45"/>
+    </g>
+
+    <g transform="translate(450,442) scale(1.12) translate(-450,-442)">
+    <!-- ═══════════ HACHI ═══════════ -->
+    <g filter="url(#k_hammered)">
+      <path d="M300,440 C 296,334 342,248 450,248 C 558,248 604,334 600,440
+               C 540,464 360,464 300,440 Z"
+            fill="url(#k_ironDome)" stroke="#08090b" stroke-width="5" stroke-linejoin="round"/>
+    </g>
+
+    <g clip-path="url(#k_domeClip)">
+      <g fill="none" stroke-linecap="round">
+        <g stroke="#040507" stroke-width="6.4" opacity="0.88">
+          <path d="M450,252 C 432,302 366,374 306,442"/>
+          <path d="M450,252 C 435,302 383,374 330,448"/>
+          <path d="M450,252 C 438,302 400,374 354,453"/>
+          <path d="M450,252 C 441,302 417,374 378,457"/>
+          <path d="M450,252 C 444,302 434,374 402,460"/>
+          <path d="M450,252 C 447,302 447,374 426,461"/>
+          <path d="M450,252 C 450,302 450,374 450,462"/>
+          <path d="M450,252 C 453,302 453,374 474,461"/>
+          <path d="M450,252 C 456,302 466,374 498,460"/>
+          <path d="M450,252 C 459,302 483,374 522,457"/>
+          <path d="M450,252 C 462,302 500,374 546,453"/>
+          <path d="M450,252 C 465,302 517,374 570,448"/>
+          <path d="M450,252 C 468,302 534,374 594,442"/>
+        </g>
+        <g stroke="#a5aeba" stroke-width="2.2" opacity="0.72">
+          <path d="M452,252 C 434,302 368,374 308,442"/>
+          <path d="M452,252 C 437,302 385,374 332,448"/>
+          <path d="M452,252 C 440,302 402,374 356,453"/>
+          <path d="M452,252 C 443,302 419,374 380,457"/>
+          <path d="M452,252 C 446,302 436,374 404,460"/>
+          <path d="M452,252 C 449,302 449,374 428,461"/>
+          <path d="M452,252 C 452,302 452,374 452,462"/>
+          <path d="M452,252 C 455,302 455,374 476,461"/>
+          <path d="M452,252 C 458,302 468,374 500,460"/>
+          <path d="M452,252 C 461,302 485,374 524,457"/>
+          <path d="M452,252 C 464,302 502,374 548,453"/>
+          <path d="M452,252 C 467,302 519,374 572,448"/>
+          <path d="M452,252 C 470,302 536,374 596,442"/>
+        </g>
+      </g>
+
+      <g>
+        <use href="#k_rivet" x="312" y="424"/><use href="#k_rivet" x="334" y="431"/>
+        <use href="#k_rivet" x="357" y="436"/><use href="#k_rivet" x="380" y="440"/>
+        <use href="#k_rivet" x="403" y="443"/><use href="#k_rivet" x="426" y="444"/>
+        <use href="#k_rivet" x="450" y="445"/><use href="#k_rivet" x="474" y="444"/>
+        <use href="#k_rivet" x="497" y="443"/><use href="#k_rivet" x="520" y="440"/>
+        <use href="#k_rivet" x="543" y="436"/><use href="#k_rivet" x="566" y="431"/>
+        <use href="#k_rivet" x="588" y="424"/>
+      </g>
+      <g>
+        <use href="#k_rivetSm" x="336" y="358"/><use href="#k_rivetSm" x="371" y="334"/>
+        <use href="#k_rivetSm" x="410" y="320"/><use href="#k_rivetSm" x="450" y="315"/>
+        <use href="#k_rivetSm" x="490" y="320"/><use href="#k_rivetSm" x="529" y="334"/>
+        <use href="#k_rivetSm" x="564" y="358"/>
+      </g>
+
+      <ellipse cx="374" cy="314" rx="90" ry="64" fill="url(#k_hotspot)" transform="rotate(-28 374 314)"/>
+      <ellipse cx="350" cy="372" rx="28" ry="78" fill="#c8d2e0" opacity="0.15" filter="url(#k_microBlur)" transform="rotate(-18 350 372)"/>
+      <path d="M596,432 C 600,342 566,266 494,252" fill="none" stroke="#b6c0cd" stroke-width="5" opacity="0.32" filter="url(#k_microBlur)"/>
+      <path d="M318,420 C 312,348 344,284 396,260" fill="none" stroke="#e0b845" stroke-width="10" opacity="0.18" filter="url(#k_microBlur)"/>
+      <path d="M330,446 C 400,470 500,470 570,446" fill="none" stroke="#a81f22" stroke-width="10" opacity="0.1" filter="url(#k_microBlur)"/>
+      <path d="M336,398 C 388,428 512,428 564,398" fill="none" stroke="#c8d2e0" stroke-width="6" opacity="0.14" filter="url(#k_microBlur)"/>
+      <path d="M356,300 C 396,278 504,278 544,300" fill="none" stroke="#e8edf3" stroke-width="5" opacity="0.16" filter="url(#k_microBlur)"/>
+      <ellipse cx="520" cy="360" rx="34" ry="72" fill="#000000" opacity="0.28" filter="url(#k_microBlur)" transform="rotate(16 520 360)"/>
+      <ellipse cx="450" cy="266" rx="96" ry="22" fill="#ffffff" opacity="0.1" filter="url(#k_microBlur)"/>
+
+      <g>
+        <rect x="-260" y="228" width="118" height="252" fill="url(#k_specSweep)" transform="skewX(-16)">
+          <animate attributeName="x" values="180;700;700" keyTimes="0;0.42;1" dur="6.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0.9;0;0" keyTimes="0;0.2;0.46;1" dur="6.5s" repeatCount="indefinite"/>
+        </rect>
+      </g>
+    </g>
+
+    <!-- KOSHIMAKI -->
+    <g filter="url(#k_partShadow)">
+      <path d="M300,440 C 360,464 540,464 600,440 L 602,412 C 542,436 358,436 298,412 Z"
+            fill="url(#k_steelLame)" stroke="#08090b" stroke-width="3.6" stroke-linejoin="round"/>
+      <path d="M300,432 C 360,456 540,456 600,432" fill="none" stroke="url(#k_goldTrim)" stroke-width="4.6" filter="url(#k_goldGlow)"/>
+      <path d="M299,418 C 359,442 541,442 601,418" fill="none" stroke="#b6c0cd" stroke-width="2.2" opacity="0.55"/>
+      <g>
+        <use href="#k_rivetGold" x="330" y="437"/><use href="#k_rivetGold" x="390" y="449"/>
+        <use href="#k_rivetGold" x="450" y="452"/><use href="#k_rivetGold" x="510" y="449"/>
+        <use href="#k_rivetGold" x="570" y="437"/>
+      </g>
+    </g>
+
+    <!-- TEHEN KANAMONO -->
+    <g filter="url(#k_goldGlow)">
+      <circle cx="450" cy="250" r="27" fill="#101216" stroke="#08090b" stroke-width="4"/>
+      <circle cx="450" cy="250" r="21" fill="none" stroke="url(#k_goldTrim)" stroke-width="4.6"/>
+      <circle cx="450" cy="250" r="12.5" fill="url(#k_goldDisc)" stroke="#3f2c08" stroke-width="1.8"/>
+      <circle cx="450" cy="250" r="5" fill="#0b0d10"/>
+      <g stroke="url(#k_goldTrim)" stroke-width="3.2" stroke-linecap="round">
+        <line x1="450" y1="216" x2="450" y2="227"/><line x1="450" y1="273" x2="450" y2="284"/>
+        <line x1="416" y1="250" x2="427" y2="250"/><line x1="473" y1="250" x2="484" y2="250"/>
+        <line x1="426" y1="226" x2="434" y2="234"/><line x1="466" y1="266" x2="474" y2="274"/>
+        <line x1="474" y1="226" x2="466" y2="234"/><line x1="434" y1="266" x2="426" y2="274"/>
+      </g>
+      <circle cx="443" cy="243" r="3.6" fill="#fffae0" opacity="0.9"/>
+    </g>
+
+    <!-- MABIZASHI -->
+    <g filter="url(#k_partShadow)">
+      <path d="M294,436 C 348,472 552,472 606,436 C 602,478 298,478 294,436 Z"
+            fill="url(#k_visorGrad)" stroke="#08090b" stroke-width="4.6" stroke-linejoin="round"/>
+      <path d="M306,448 C 356,478 544,478 594,448" fill="none" stroke="url(#k_goldTrim)" stroke-width="5.2" filter="url(#k_goldGlow)"/>
+      <path d="M300,440 C 352,474 548,474 600,440" fill="none" stroke="#c2ccd9" stroke-width="2.6" opacity="0.62"/>
+      <path d="M308,462 C 358,490 542,490 592,462" fill="none" stroke="#040507" stroke-width="7" opacity="0.75"/>
+      <g>
+        <use href="#k_rivetSm" x="332" y="458"/><use href="#k_rivetSm" x="450" y="470"/>
+        <use href="#k_rivetSm" x="568" y="458"/>
+      </g>
+    </g>
+
+    </g>
+
+    <!-- ═══════════ KUWAGATA: hoja ancha con muesca ═══════════ -->
+    <g filter="url(#k_goldGlow)">
+      <path d="M330,450
+               C 314,362 284,270 226,184
+               C 204,154 178,126 152,108
+               C 138,99 120,116 132,134
+               C 148,168 172,202 196,232
+               C 254,312 336,398 442,452 Z"
+            fill="url(#k_goldBlade)" stroke="#241804" stroke-width="4.6" stroke-linejoin="round"/>
+      <g clip-path="url(#k_hornLClip)">
+        <path d="M326,442 C 310,358 280,266 224,186 C 202,156 178,130 154,112"
+              fill="none" stroke="#fffbe4" stroke-width="5" opacity="0.7"/>
+        <path d="M424,442 C 336,384 268,306 206,232" fill="none" stroke="#332305" stroke-width="6" opacity="0.75"/>
+        <path d="M382,420 C 312,356 260,282 210,212" fill="none" stroke="#ffeaa8" stroke-width="2.2" opacity="0.35"/>
+        <path d="M338,398 C 304,344 266,290 222,236" fill="none" stroke="#7d570f" stroke-width="9" opacity="0.35"/>
+        <rect x="-200" y="90" width="66" height="400" fill="url(#k_specSweep)" transform="skewX(-22)">
+          <animate attributeName="x" values="50;430;430" keyTimes="0;0.4;1" dur="6.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0.85;0;0" keyTimes="0;0.22;0.44;1" dur="6.5s" repeatCount="indefinite"/>
+        </rect>
+      </g>
+
+      <path d="M570,450
+               C 586,362 616,270 674,184
+               C 696,154 722,126 748,108
+               C 762,99 780,116 768,134
+               C 752,168 728,202 704,232
+               C 646,312 564,398 458,452 Z"
+            fill="url(#k_goldBlade)" stroke="#241804" stroke-width="4.6" stroke-linejoin="round"/>
+      <g clip-path="url(#k_hornRClip)">
+        <path d="M574,442 C 590,358 620,266 676,186 C 698,156 722,130 746,112"
+              fill="none" stroke="#fffbe4" stroke-width="5" opacity="0.5"/>
+        <path d="M476,442 C 564,384 632,306 694,232" fill="none" stroke="#332305" stroke-width="6" opacity="0.8"/>
+        <path d="M562,398 C 596,344 634,290 678,236" fill="none" stroke="#7d570f" stroke-width="9" opacity="0.4"/>
+        <rect x="-200" y="90" width="66" height="400" fill="url(#k_specSweep)" transform="skewX(-22)" opacity="0.7">
+          <animate attributeName="x" values="260;720;720" keyTimes="0;0.4;1" dur="6.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0.75;0;0" keyTimes="0;0.22;0.44;1" dur="6.5s" repeatCount="indefinite"/>
+        </rect>
+      </g>
+    </g>
+
+    <!-- ═══════════ MAEDATE: luna creciente ═══════════ -->
+    <g filter="url(#k_goldGlow)">
+      <path d="M392,352
+               C 378,396 400,432 450,442
+               C 500,432 522,396 508,352
+               C 500,392 480,414 450,420
+               C 420,414 400,392 392,352 Z"
+            fill="url(#k_goldDisc)" stroke="#241804" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M396,360 C 386,398 404,426 444,436" fill="none" stroke="#fffae0" stroke-width="3" opacity="0.7"/>
+      <path d="M504,360 C 514,398 496,426 458,436" fill="none" stroke="#412d08" stroke-width="3" opacity="0.7"/>
+      <path d="M404,372 C 396,400 412,420 442,428" fill="none" stroke="#8a6116" stroke-width="2" opacity="0.5"/>
+      <circle cx="410" cy="378" r="5" fill="#fffae0" opacity="0.5"/>
+    </g>
+
+  </g>
+
+  <!-- viñeta -->
+  
+  <defs>
+    <radialGradient id="k_vigGrad" cx="50%" cy="44%" r="74%">
+      <stop offset="58%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.74"/>
     </radialGradient>
   </defs>
 
-  <rect width="1000" height="260" fill="#161616"/>
-  <rect width="1000" height="260" fill="#1e1e1e" filter="url(#woodgrain)"/>
+    </g>
 
-  <!-- halo tenue alrededor del sol -->
-  <circle cx="812" cy="86" r="86" fill="#b89a72" opacity="0.07"/>
-  <circle cx="812" cy="86" r="62" fill="#b89a72" opacity="0.06"/>
+    <!-- banda de olas seigaiha -->
+    <rect x="0" y="300" width="1000" height="36" fill="url(#hdrSeigaiha)" opacity="0.7"/>
+    <rect x="0" y="336" width="1000" height="24" fill="#100f0e"/>
+    <line x1="0" y1="336" x2="1000" y2="336" stroke="#08090b" stroke-width="4"/>
+    <line x1="0" y1="347" x2="1000" y2="347" stroke="#2e2b27" stroke-width="1.3" opacity="0.6"/>
 
-  <!-- disco solar -->
-  <circle cx="812" cy="86" r="46" fill="url(#sunTint)" filter="url(#inkbleed)"/>
-  <circle cx="812" cy="86" r="46" fill="none" stroke="#0d0d0d" stroke-width="3"/>
-
-  <!-- montana -->
-  <g filter="url(#inkbleed)">
-    <path d="M560 205 L700 92 L742 128 L780 96 L920 205 Z" fill="url(#hatchLight)" stroke="#0d0d0d" stroke-width="3.5" stroke-linejoin="round"/>
-    <path d="M700 92 L742 128 L780 96 L757 118 L742 108 L722 122 Z" fill="#e4e6e9" stroke="#0d0d0d" stroke-width="2"/>
+    <!-- petalos de sakura -->
+    <g>
+      <use href="#hdrPetal">
+        <animateTransform attributeName="transform" type="translate" values="150,-20; 118,380" dur="11s" begin="-5.5s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="rotate" values="0;360" dur="4.2s" repeatCount="indefinite" additive="sum"/>
+      </use>
+      <use href="#hdrPetal" opacity="0.85">
+        <animateTransform attributeName="transform" type="translate" values="330,-30; 372,380" dur="14s" begin="-3s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="rotate" values="360;0" dur="5.4s" repeatCount="indefinite" additive="sum"/>
+      </use>
+      <use href="#hdrPetal" opacity="0.9">
+        <animateTransform attributeName="transform" type="translate" values="580,-25; 540,380" dur="12s" begin="-6.5s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="rotate" values="0;340" dur="3.7s" repeatCount="indefinite" additive="sum"/>
+      </use>
+      <use href="#hdrPetal" opacity="0.75">
+        <animateTransform attributeName="transform" type="translate" values="700,-35; 742,380" dur="15s" begin="-1.5s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="rotate" values="0;360" dur="6.1s" repeatCount="indefinite" additive="sum"/>
+      </use>
+      <use href="#hdrPetal" opacity="0.8">
+        <animateTransform attributeName="transform" type="translate" values="900,-20; 866,380" dur="13s" begin="-8s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="rotate" values="320;0" dur="4.6s" repeatCount="indefinite" additive="sum"/>
+      </use>
+      <use href="#hdrPetal" opacity="0.7">
+        <animateTransform attributeName="transform" type="translate" values="60,-40; 96,380" dur="16s" begin="-4s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="rotate" values="0;360" dur="5.8s" repeatCount="indefinite" additive="sum"/>
+      </use>
+      <use href="#hdrPetal" opacity="0.88">
+        <animateTransform attributeName="transform" type="translate" values="440,-28; 408,380" dur="12.6s" begin="-9.5s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="rotate" values="0;300" dur="3.9s" repeatCount="indefinite" additive="sum"/>
+      </use>
+      <use href="#hdrPetal" opacity="0.78">
+        <animateTransform attributeName="transform" type="translate" values="800,-32; 836,380" dur="14.4s" begin="-11s" repeatCount="indefinite"/>
+        <animateTransform attributeName="transform" type="rotate" values="360;0" dur="5.1s" repeatCount="indefinite" additive="sum"/>
+      </use>
+    </g>
   </g>
 
-  <!-- ola principal -->
-  <g filter="url(#inkbleed)">
-    <path d="M-20 232 C 90 232, 130 150, 232 150 C 320 150, 342 206, 420 206 C 486 206, 508 168, 570 176 L 570 260 L -20 260 Z"
-          fill="url(#hatch)" stroke="#0d0d0d" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M-20 232 C 90 232, 130 150, 232 150 C 300 150, 330 186, 384 198"
-          fill="none" stroke="#e6e9ed" stroke-width="4.5" stroke-linecap="round"/>
-    <path d="M232 150 C 246 132, 268 128, 282 138 C 272 132, 254 138, 246 152"
-          fill="#e6e9ed" stroke="#0d0d0d" stroke-width="2.2"/>
-    <path d="M180 168 C 192 150, 214 146, 226 156 C 216 150, 198 156, 192 170"
-          fill="#c4cad2" stroke="#0d0d0d" stroke-width="2.2"/>
-    <path d="M110 196 C 122 180, 142 177, 152 186 C 143 181, 127 186, 121 198"
-          fill="#9aa2ac" stroke="#0d0d0d" stroke-width="2"/>
+  <!-- svnchezzz en relieve: extrusion + bisel -->
+  <g>
+    <text x="77" y="159" font-family="Georgia, 'Times New Roman', serif" font-size="66"
+          font-weight="bold" fill="#050505" letter-spacing="4">svnchezzz</text>
+    <text x="76" y="158" font-family="Georgia, 'Times New Roman', serif" font-size="66"
+          font-weight="bold" fill="#0a0a0a" letter-spacing="4">svnchezzz</text>
+    <text x="75" y="157" font-family="Georgia, 'Times New Roman', serif" font-size="66"
+          font-weight="bold" fill="#101010" letter-spacing="4">svnchezzz</text>
+    <text x="74" y="156" font-family="Georgia, 'Times New Roman', serif" font-size="66"
+          font-weight="bold" fill="#161616" letter-spacing="4">svnchezzz</text>
+    <text x="73" y="155" font-family="Georgia, 'Times New Roman', serif" font-size="66"
+          font-weight="bold" fill="#1e1e1e" letter-spacing="4">svnchezzz</text>
+    <text x="72" y="154" font-family="Georgia, 'Times New Roman', serif" font-size="66"
+          font-weight="bold" fill="#282828" letter-spacing="4">svnchezzz</text>
+    <text x="71" y="153" font-family="Georgia, 'Times New Roman', serif" font-size="66"
+          font-weight="bold" fill="#343434" letter-spacing="4">svnchezzz</text>
+    <!-- bisel: luz arriba-izquierda, sombra abajo-derecha -->
+    <text x="69" y="151" font-family="Georgia, 'Times New Roman', serif" font-size="66"
+          font-weight="bold" fill="#ffffff" opacity="0.3" letter-spacing="4">svnchezzz</text>
+    <text x="70.9" y="152.9" font-family="Georgia, 'Times New Roman', serif" font-size="66"
+          font-weight="bold" fill="#000000" opacity="0.42" letter-spacing="4">svnchezzz</text>
+    <!-- cara frontal -->
+    <text x="70" y="152" font-family="Georgia, 'Times New Roman', serif" font-size="66"
+          font-weight="bold" fill="#e6e6e6" stroke="#0d0d0d" stroke-width="1.2" letter-spacing="4">svnchezzz</text>
+  </g>
+  <text x="74" y="184" font-family="Georgia, serif" font-size="17" fill="#9a9a9a" letter-spacing="7">DATA · AUTOMATION · AI</text>
+
+  <g filter="url(#hdrInk)">
+    <rect x="70" y="204" width="48" height="48" fill="#7a1a1a" opacity="0.22">
+      <animate attributeName="opacity" values="0.16;0.32;0.16" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="70" y="204" width="48" height="48" fill="none" stroke="#9e3030" stroke-width="3"/>
+    <text x="94" y="229" text-anchor="middle" font-size="18" fill="#d9a3a3" font-family="serif">乱</text>
+    <text x="94" y="247" text-anchor="middle" font-size="18" fill="#d9a3a3" font-family="serif">機</text>
   </g>
 
-  <!-- ola secundaria -->
-  <g filter="url(#inkbleed)" opacity="0.85">
-    <path d="M420 246 C 500 246, 530 212, 604 216 C 676 220, 700 244, 780 244 L 1020 244 L 1020 260 L 420 260 Z"
-          fill="#232830" stroke="#0d0d0d" stroke-width="3"/>
-  </g>
-
-  <!-- titulo -->
-  <text x="70" y="96" font-family="Georgia, 'Times New Roman', serif" font-size="66" font-weight="bold"
-        fill="#ededed" stroke="#0d0d0d" stroke-width="1.5" letter-spacing="4">svnchezzz</text>
-  <text x="74" y="128" font-family="Georgia, serif" font-size="17" fill="#9a9a9a" letter-spacing="7">DATA · AUTOMATION · AI</text>
-
-  <!-- sello hanko en carmesi apagado -->
-  <g filter="url(#inkbleed)">
-    <rect x="70" y="146" width="46" height="46" fill="#7a1a1a" opacity="0.22"/>
-    <rect x="70" y="146" width="46" height="46" fill="none" stroke="#9e3030" stroke-width="3"/>
-    <text x="93" y="170" text-anchor="middle" font-size="17" fill="#d9a3a3" font-family="serif">乱</text>
-    <text x="93" y="187" text-anchor="middle" font-size="17" fill="#d9a3a3" font-family="serif">機</text>
-  </g>
-
-  <rect x="6" y="6" width="988" height="248" fill="none" stroke="#0d0d0d" stroke-width="7"/>
-  <rect x="12" y="12" width="976" height="236" fill="none" stroke="#4a4a4a" stroke-width="1.5"/>
+  <rect x="6" y="6" width="988" height="348" fill="none" stroke="#08090b" stroke-width="7"/>
+  <rect x="12" y="12" width="976" height="336" fill="none" stroke="#43464b" stroke-width="1.5"/>
 </svg>
