@@ -2,13 +2,19 @@
   <img src="./header-kabuto.svg" width="100%" alt="svnchezzz — Data · Automation · AI" />
 </div>
 
+<br>
+
 <div align="center">
   <a href="https://alvaroamosquerae.com">
     <img src="https://readme-typing-svg.demolab.com?font=Courier+Prime&weight=700&size=22&pause=1000&color=D0D0D0&center=true&vCenter=true&width=600&lines=Data+Processing+Technician+for+AI;ETL+%7C+Machine+Learning+%7C+Automation;Order+from+data+chaos" alt="Typing SVG" />
   </a>
 </div>
 
+<br><br>
+
 <img src="./sec-about.svg" width="100%" alt="About Me" />
+
+<br>
 
 <p align="left">
 Hi, I'm <b>Nicolás Mosquera Sánchez</b>. A technician trained in the full <b>data lifecycle</b> for Artificial Intelligence. My craft: data extraction, cleaning (ETL), and systematization for Machine Learning models wielding applied statistics and Python to bring order and efficiency to business processes.
@@ -20,7 +26,11 @@ Driven by everything that unites <b>data + automation</b>: record-keeping system
 📫 &nbsp;<a href="mailto:nicolasanchezms@gmail.com">nicolasanchezms@gmail.com</a>
 </p>
 
+<br><br>
+
 <img src="./sec-works.svg" width="100%" alt="Works & Experience" />
+
+<br>
 
 <p align="left">
 📊 &nbsp;<b>Full automation for a barbershop</b> bound by legacy methods: replacing an analog, ambiguous workflow with a structured data architecture that guards information integrity and operational efficiency.
@@ -30,33 +40,43 @@ Driven by everything that unites <b>data + automation</b>: record-keeping system
 🎨 &nbsp;<b>Web development</b>: websites crafted with modern design and prototyping tools.
 </p>
 
+<br><br>
+
 <div align="center">
   <img src="./katana-ukiyoe.svg" width="100%" alt="katana" />
 </div>
 
+<br><br>
+
 <img src="./sec-arsenal.svg" width="100%" alt="Arsenal" />
+
+<br><br>
 
 <div align="center">
   <img src="https://cdn.simpleicons.org/python/d0d0d0" height="42" alt="python" />
-  <img width="16" />
+  <img width="20" />
   <img src="https://cdn.simpleicons.org/pandas/9a9a9a" height="42" alt="pandas" />
-  <img width="16" />
+  <img width="20" />
   <img src="https://cdn.simpleicons.org/numpy/d0d0d0" height="42" alt="numpy" />
-  <img width="16" />
+  <img width="20" />
   <img src="https://cdn.simpleicons.org/mysql/9a9a9a" height="42" alt="mysql" />
-  <img width="16" />
+  <img width="20" />
   <img src="https://cdn.simpleicons.org/anaconda/d0d0d0" height="42" alt="anaconda" />
-  <img width="16" />
+  <br><br>
   <img src="https://cdn.simpleicons.org/jupyter/9a9a9a" height="42" alt="jupyter" />
-  <img width="16" />
+  <img width="20" />
   <img src="https://cdn.simpleicons.org/n8n/d0d0d0" height="42" alt="n8n" />
-  <img width="16" />
+  <img width="20" />
   <img src="https://cdn.simpleicons.org/figma/9a9a9a" height="42" alt="figma" />
-  <img width="16" />
+  <img width="20" />
   <img src="https://cdn.simpleicons.org/probot/d0d0d0" height="42" alt="virtual agents" />
 </div>
 
+<br><br>
+
 <img src="./sec-music.svg" width="100%" alt="Now Playing" />
+
+<br><br>
 
 <div align="center">
   <a href="https://open.spotify.com/user/31ylnrafjhrswb2fz4j6gpb6qewe">
@@ -64,10 +84,12 @@ Driven by everything that unites <b>data + automation</b>: record-keeping system
   </a>
 </div>
 
-<br>
+<br><br>
 
 <div align="center">
   <i>「乱中有機」 — In the midst of chaos, there is also opportunity.</i>
 </div>
+
+<br>
 
 <img src="./footer-ukiyoe.svg" width="100%" alt="" />
