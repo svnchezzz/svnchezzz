@@ -11,7 +11,7 @@
 <img src="./sec-about.svg" width="100%" alt="About Me" />
 
 <p align="left">
-Hi, I'm <b>Nicolás Mosquera Sánchez</b>. A technician trained in the full <b>data lifecycle</b> for Artificial Intelligence. My craft: data extraction, cleaning (ETL), and systematization for Machine Learning models wielding applied statistics and Python to bring order and efficiency to business processes.
+Hi, I'm <b>Svnchezzz</b>. A technician trained in the full <b>data lifecycle</b> for Artificial Intelligence. My craft: data extraction, cleaning (ETL), and systematization for Machine Learning models wielding applied statistics and Python to bring order and efficiency to business processes.
 <br><br>
 I currently collaborate with <a href="https://alvaroamosquerae.com">alvaroamosquerae.com</a>, an end-to-end digital solution for transforming service-based businesses.
 <br><br>
