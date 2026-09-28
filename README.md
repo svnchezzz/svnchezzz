@@ -23,6 +23,26 @@ Driven by everything that unites <b>data + automation</b>: record-keeping system
 <img src="./sec-works.svg" width="100%" alt="Works & Experience" />
 
 <p align="left">
+💰 &nbsp;<b>Personal finance app</b>: a tool that brings order to money management, recording income and expenses, categorizing every movement, and showing clear balances so tracking your finances stops being a chore.
+</p>
+
+<div align="center">
+  <a href="https://github.com/Svnchezzzz/finanzas-app">
+    <img src="https://github-readme-stats.vercel.app/api/pin/?username=TU_USUARIO&repo=NOMBRE_DEL_REPO&bg_color=0d0d0d&title_color=d0d0d0&text_color=9a9a9a&icon_color=d0d0d0&border_color=3a3a3a" alt="Finance app repo" />
+  </a>
+  <br>
+  <a href="https://github.com/Svnchezzzz/finanzas-app">
+    <img src="https://img.shields.io/badge/View_Repository-→-d0d0d0?style=for-the-badge&logo=github&logoColor=d0d0d0&labelColor=0d0d0d&color=3a3a3a" alt="View repository" />
+  </a>
+</div>
+
+<br>
+
+https://github.com/user-attachments/assets/PEGA-AQUI-EL-ID-DEL-VIDEO
+
+<br>
+
+<p align="left">
 📊 &nbsp;<b>Full automation for a barbershop</b> bound by legacy methods: replacing an analog, ambiguous workflow with a structured data architecture that guards information integrity and operational efficiency.
 <br><br>
 🤖 &nbsp;<b>Virtual agents & automation</b>: automated workflows with n8n and scripts that cut repetitive tasks and sharpen operations.
