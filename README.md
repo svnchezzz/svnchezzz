@@ -26,12 +26,6 @@ Driven by everything that unites <b>data + automation</b>: record-keeping system
 💰 &nbsp;<b>Personal finance app</b>: a tool that brings order to money management, recording income and expenses, categorizing every movement, and showing clear balances so keeping track of your finances stops being a chore.
 </p>
 
-<div align="center">
-  <a href="https://github.com/Svnchezzzzz/finanzas-app">
-    <img src="https://img.shields.io/badge/View_Repository-→-d0d0d0?style=for-the-badge&logo=github&logoColor=d0d0d0&labelColor=0d0d0d&color=3a3a3a" alt="View repository" />
-  </a>
-</div>
-
 <br>
 
 <div align="center">
